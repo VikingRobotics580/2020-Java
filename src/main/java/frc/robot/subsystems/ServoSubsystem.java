@@ -15,7 +15,7 @@ public class ServoSubsystem extends Subsystem {
 
     public ServoSubsystem() {
         servo0 = new Servo(0);
-        defaultAngle = 55;
+        defaultAngle = 145;
     }
 
 
@@ -29,12 +29,12 @@ public class ServoSubsystem extends Subsystem {
         btn5 = rightJoystick.getRawButton(5);
 
         if(btn5){
-            if(servo0.getAngle() > defaultAngle + 90)
+            if(servo0.getAngle() < defaultAngle + 90)
                 servo0.setAngle(servo0.getAngle() + 5);
         }
 
         if(btn3){
-            if(servo0.getAngle() < defaultAngle - 90)
+            if(servo0.getAngle() > defaultAngle - 90)
                 servo0.setAngle(servo0.getAngle() - 5);
         }
 
