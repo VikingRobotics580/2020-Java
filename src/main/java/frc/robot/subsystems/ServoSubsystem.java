@@ -20,7 +20,7 @@ public class ServoSubsystem extends Subsystem {
 
 
     public void initDefaultCommand() {
-        servo0.setAngle(55);
+        servo0.setAngle(defaultAngle);
     }
 
     public void rotateArm(){
