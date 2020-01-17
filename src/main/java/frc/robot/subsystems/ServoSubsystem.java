@@ -11,14 +11,16 @@ public class ServoSubsystem extends Subsystem {
     public Servo servo0;
     public boolean btn3;
     public boolean btn5;
+    public int defaultAngle;
 
     public ServoSubsystem() {
         servo0 = new Servo(0);
+        defaultAngle = 55;
     }
 
 
     public void initDefaultCommand() {
-        servo0.setAngle(35);
+        servo0.setAngle(55);
     }
 
     public void rotateArm(){
@@ -27,12 +29,12 @@ public class ServoSubsystem extends Subsystem {
         btn5 = rightJoystick.getRawButton(5);
 
         if(btn5){
-            if(servo0.getAngle() > -55)
+            if(servo0.getAngle() > defaultAngle + 90)
                 servo0.setAngle(servo0.getAngle() + 5);
         }
 
         if(btn3){
-            if(servo0.getAngle() < 125)
+            if(servo0.getAngle() < defaultAngle - 90)
                 servo0.setAngle(servo0.getAngle() - 5);
         }
 
