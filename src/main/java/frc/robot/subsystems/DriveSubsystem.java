@@ -29,7 +29,6 @@ public class DriveSubsystem extends Subsystem {
         _lBack = new WPI_TalonSRX(1);
 
         _diffDrive = new DifferentialDrive(_lFront, _rFront);
-    
         _lFaults = new Faults();
         _rFaults = new Faults();
     }
@@ -37,12 +36,12 @@ public class DriveSubsystem extends Subsystem {
     public void Driver() {
         String work = "";
 
-        /* get gamepad stick values */
+        /* get raw joystick values */
         double forw = -1 * rightJoystick.getRawAxis(1); /* positive is forward */
         double turn = +1 * rightJoystick.getRawAxis(2); /* positive is right */
         boolean btn1 = rightJoystick.getRawButton(1); /* if button is down, print joystick values */
 
-        /* deadband gamepad 10% */
+        /* margin of error for joystick sensitivity: 10% */
         if (Math.abs(forw) < 0.10) {
             forw = 0;
         }
@@ -53,11 +52,8 @@ public class DriveSubsystem extends Subsystem {
         /* drive robot */
         _diffDrive.arcadeDrive(forw, turn);
 
-        /*
-        * [2] Make sure Gamepad Forward is positive for FORWARD, and GZ is positive for
-        * RIGHT
-        */
-        work += " GF:" + forw + " GT:" + turn;
+        /* Make sure Joystick Forward is positive for FORWARD, and JT is positive for RIGHT */
+        work += " JF:" + forw + " JT:" + turn;
 
         /* get sensor values */
         // double leftPos = _leftFront.GetSelectedSensorPosition(0);
