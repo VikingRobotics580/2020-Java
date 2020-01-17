@@ -16,18 +16,19 @@ public class ServoSubsystem extends Subsystem {
 
 
     public void initDefaultCommand() {
-        servo0.setAngle(90);
+        servo0.setAngle(45);
     }
 
     public void rotateArm(){
 
         if(rightJoystick.getRawButton(5) == true){
-            if(servo0.getAngle() > 0 || servo0.getAngle() < 180)
+            System.out.println("bitch");
+            // if(servo0.getAngle() > 0 || servo0.getAngle() < 180)
                 servo0.setAngle(servo0.getAngle() + 5);
         }
 
         if(rightJoystick.getRawButton(3) == true){
-            if(servo0.getAngle() > 0 || servo0.getAngle() < 180)
+            // if(servo0.getAngle() > 0 || servo0.getAngle() < 180)
                 servo0.setAngle(servo0.getAngle() - 5);
         }
 
