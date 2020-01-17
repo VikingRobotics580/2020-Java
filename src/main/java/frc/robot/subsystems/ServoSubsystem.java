@@ -3,7 +3,10 @@ package frc.robot.subsystems;
 
 import static frc.robot.OI.*;
 
+import static frc.robot.commands.ServoCommand.*;
+
 import edu.wpi.first.wpilibj.command.Subsystem; 
+
 import edu.wpi.first.wpilibj.Servo;
 
 public class ServoSubsystem extends Subsystem {
@@ -21,6 +24,8 @@ public class ServoSubsystem extends Subsystem {
 
     public void initDefaultCommand() {
         servo0.setAngle(defaultAngle);
+        setDefaultCommand(new ServoCommand());
+
     }
 
     public void rotateArm(){
