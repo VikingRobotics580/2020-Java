@@ -6,7 +6,7 @@ import frc.robot.Robot;
 public class ServoCommand extends Command {
 
 	public ServoCommand() {
-		requires(Robot.drive);
+		requires(Robot.servo);
 	}
 
 	@Override
