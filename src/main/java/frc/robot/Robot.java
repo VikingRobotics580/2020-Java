@@ -26,6 +26,7 @@ import frc.robot.commands.*;
 public class Robot extends TimedRobot {
   public static final DriveSubsystem drive = new DriveSubsystem();
  // public static final LimelightSubsystem limelight = new LimelightSubsystem();
+ public static final ServoSubsystem servo = new ServoSubsystem();
 
 
   @Override

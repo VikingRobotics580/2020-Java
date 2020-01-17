@@ -15,6 +15,7 @@ public class ServoCommand extends Command {
 
 	@Override
 	protected void execute() {
+		Robot.servo.rotateArm();
 	}
 
 	@Override
