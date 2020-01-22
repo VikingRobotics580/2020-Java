@@ -29,19 +29,19 @@ public class ServoSubsystem extends Subsystem {
 
     }
 
-    public void rotateArm(){
+    public void rotateArm() {
 
         btn3 = rightJoystick.getRawButton(3);
         btn5 = rightJoystick.getRawButton(5);
 
         if(btn5){
            // if(servo0.getAngle() < defaultAngle + 90)
-                servo0.setAngle(servo0.getAngle() + 5);
+                servo0.setAngle(servo0.getAngle() + 2);
         }
 
         if(btn3){
            // if(servo0.getAngle() > defaultAngle - 90)
-                servo0.setAngle(servo0.getAngle() - 5);
+                servo0.setAngle(servo0.getAngle() - 2);
         }
 
     }

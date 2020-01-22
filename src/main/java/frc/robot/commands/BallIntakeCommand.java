@@ -15,7 +15,6 @@ public class BallIntakeCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.intake.rotateIntake();
 	}
 
 	@Override
