@@ -31,8 +31,8 @@ public class ServoSubsystem extends Subsystem {
 
     public void rotateArm() {
 
-        btn3 = rightJoystick.getRawButton(3);
-        btn5 = rightJoystick.getRawButton(5);
+        btn3 = rightJoystick.getRawButton(3); //checks if button is pressed, returns true or false
+        btn5 = rightJoystick.getRawButton(5); //^
 
         if(btn5){
            // if(servo0.getAngle() < defaultAngle + 90)
