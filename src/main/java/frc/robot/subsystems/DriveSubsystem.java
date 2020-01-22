@@ -19,6 +19,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.DriveCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+
 // Class declaration:
 public class DriveSubsystem extends Subsystem {
     // Creating variables/objects:
@@ -32,8 +34,14 @@ public class DriveSubsystem extends Subsystem {
     Faults _lFaults;
     Faults _rFaults;
 
+    ADXRS450_Gyro gyro;
+
+
     // This instantiates, or sets up all of the variables. For example, it sets the right front wheel to the 2nd talon.
     public DriveSubsystem() {
+
+        gyro = new ADXRS450_Gyro();
+
         _rFront = new WPI_TalonSRX(2);
         _rBack = new WPI_TalonSRX(3);
         _lFront = new WPI_TalonSRX(0);
@@ -42,6 +50,11 @@ public class DriveSubsystem extends Subsystem {
         _diffDrive = new DifferentialDrive(_lFront, _rFront);
         _lFaults = new Faults();
         _rFaults = new Faults();
+
+    }
+
+    public void printAngle() {
+        System.out.println("Gyro: " + gyro.getAngle());
     }
 
     // This is the driver method, that is run constantly in the DriveCommand. This is what takes raw data from the joysticks and pushes power to the motors.
@@ -53,6 +66,7 @@ public class DriveSubsystem extends Subsystem {
         double forw = -1 * rightJoystick.getRawAxis(1); /* pos = forward */
         double turn = +1 * rightJoystick.getRawAxis(2); /* pos = right */
         boolean btn1 = rightJoystick.getRawButton(1); /* if button is down, print joystick values */
+        boolean btn7 = rightJoystick.getRawButton(7);
 
         // Margin of error for joystick sensitivity = 10%
         if (Math.abs(forw) < 0.10) {
@@ -90,6 +104,10 @@ public class DriveSubsystem extends Subsystem {
         // Print to drive station when button 1 is pressed:
         if (btn1) {
             System.out.println(work);
+        }
+
+        if (btn7) {
+            printAngle();
         }
     }
 

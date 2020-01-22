@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.TimedRobot;
 //import com.ctre.phoenix.motorcontrol.ControlMode;
 
+import static frc.robot.OI.*;
+
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
 
@@ -28,7 +30,6 @@ public class Robot extends TimedRobot {
   // public static final LimelightSubsystem limelight = new LimelightSubsystem();
   public static final ServoSubsystem servo = new ServoSubsystem();
   public static final BallIntakeSubsystem intake = new BallIntakeSubsystem();
-
 
   @Override
   public void robotInit() {
