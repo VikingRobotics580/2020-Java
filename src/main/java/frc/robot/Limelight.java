@@ -90,6 +90,12 @@ public class Limelight {
 		//1280 x 720
 	}
 
+	public static double posX, posY; // feet
+	public static double lastDistance = 0d; // distance traveled the last time update() was called
+	public double getDistanceTraveled() {
+		return (leftEncoder.getDistance()+rightEncoder.getDistance())/2;
+	}
+	
 	/**
 	 * Update all methods in need of routine refreshing
 	 * 
@@ -103,8 +109,17 @@ public class Limelight {
 		updateLatency();
 		updateLedMode();
 		updateCamMode();
-	}
 
+		//changing position and distance
+		double distance = getDistanceTraveled()-lastDistance;
+		
+		posX += distance*Math.cos(Math.toRadians(getAngle()));
+		posY += distance*Math.sin(Math.toRadians(getAngle()));
+		
+		distance = getDistanceTraveled();
+			
+	}
+	
 	/**
 	 * Update boolean hasTarget
 	 */
