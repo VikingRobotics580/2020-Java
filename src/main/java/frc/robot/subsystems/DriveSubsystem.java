@@ -21,6 +21,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
+import edu.wpi.first.wpilibj.smartdashboard.*;
+import edu.wpi.first.wpilibj.shuffleboard.*;
+
+import edu.wpi.first.wpilibj.Sendable;
+
 // Class declaration:
 public class DriveSubsystem extends Subsystem {
     // Creating variables/objects:
@@ -51,6 +56,8 @@ public class DriveSubsystem extends Subsystem {
         _lFaults = new Faults();
         _rFaults = new Faults();
 
+        Shuffleboard.getTab("Gyro").add((Sendable) gyro);
+
     }
 
     public void printAngle() {
@@ -59,6 +66,10 @@ public class DriveSubsystem extends Subsystem {
 
     // This is the driver method, that is run constantly in the DriveCommand. This is what takes raw data from the joysticks and pushes power to the motors.
     public void Driver() {
+
+        SmartDashboard.putNumber("Joystick X value", rightJoystick.getX());
+        SmartDashboard.putNumber("Joystick Y value", rightJoystick.getY());
+
         String work = "";
 
         // Constantly update the forw and turn variables with joystick data:
