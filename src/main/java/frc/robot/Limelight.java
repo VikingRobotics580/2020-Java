@@ -94,7 +94,7 @@ public class Limelight {
 	// Aims when button is pushed
 	float KpAim = -0.1f;
 	float KpDistance = -0.1f;
-	float min_aim_command = 0.05f;
+	float min_aim_command = 0.05f; //min amount of power needed for robot to move, may need adjustment
 
 	std.shared_ptr<NetworkTable> table = NetworkTable.GetTable("limelight");
 	float tx = table->GetNumber("tx");
