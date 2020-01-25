@@ -18,6 +18,10 @@ import static frc.robot.OI.*;
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+
+import edu.wpi.first.wpilibj.smartdashboard.*;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -26,13 +30,16 @@ import frc.robot.commands.*;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static final DriveSubsystem drive = new DriveSubsystem();
+  //public static final DriveSubsystem drive = new DriveSubsystem();
   public static final ServoSubsystem servo = new ServoSubsystem();
   public static final Limelight limelight = new Limelight();
   public static final BallIntakeSubsystem intake = new BallIntakeSubsystem();
 
+  ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+
   @Override
   public void robotInit() {
+    SmartDashboard.putData(gyro);
   }
 
   public void periodic() {

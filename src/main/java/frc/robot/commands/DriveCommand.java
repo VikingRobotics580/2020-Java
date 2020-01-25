@@ -6,7 +6,7 @@ import frc.robot.Robot;
 public class DriveCommand extends Command {
 
 	public DriveCommand() {
-		requires(Robot.drive);
+		//requires(Robot.drive);
 	}
 
 	@Override

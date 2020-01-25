@@ -19,8 +19,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.DriveCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-
 import edu.wpi.first.wpilibj.smartdashboard.*;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 
@@ -39,13 +37,8 @@ public class DriveSubsystem extends Subsystem {
     Faults _lFaults;
     Faults _rFaults;
 
-    ADXRS450_Gyro gyro;
-
-
     // This instantiates, or sets up all of the variables. For example, it sets the right front wheel to the 2nd talon.
     public DriveSubsystem() {
-
-        gyro = new ADXRS450_Gyro();
 
         _rFront = new WPI_TalonSRX(2);
         _rBack = new WPI_TalonSRX(3);
@@ -56,13 +49,8 @@ public class DriveSubsystem extends Subsystem {
         _lFaults = new Faults();
         _rFaults = new Faults();
 
-        SmartDashboard.putData(gyro);
         SmartDashboard.putData(_diffDrive);
 
-    }
-
-    public void printAngle() {
-        System.out.println("Gyro: " + gyro.getAngle());
     }
 
     // This is the driver method, that is run constantly in the DriveCommand. This is what takes raw data from the joysticks and pushes power to the motors.
@@ -116,10 +104,6 @@ public class DriveSubsystem extends Subsystem {
         // Print to drive station when button 1 is pressed:
         if (btn1) {
             System.out.println(work);
-        }
-
-        if (btn7) {
-            printAngle();
         }
     }
 
