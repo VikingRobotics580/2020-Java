@@ -57,6 +57,7 @@ public class DriveSubsystem extends Subsystem {
         _rFaults = new Faults();
 
         SmartDashboard.putData(gyro);
+        SmartDashboard.putData(_diffDrive);
 
     }
 
