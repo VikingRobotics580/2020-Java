@@ -30,6 +30,7 @@ public class Robot extends TimedRobot {
   public static final ServoSubsystem servo = new ServoSubsystem();
   public static final Limelight limelight = new Limelight();
   public static final BallIntakeSubsystem intake = new BallIntakeSubsystem();
+  public static final WinchSubsystem winch = new WinchSubsystem();
 
   @Override
   public void robotInit() {
