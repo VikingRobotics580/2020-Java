@@ -35,13 +35,13 @@ public class WinchSubsystem extends Subsystem {
         btn7 = rightJoystick.getRawButton(7);
         btn8 = rightJoystick.getRawButton(8);
 
-        if(btn7){
+        if(btn7){ //Roate one way with button 7
             winchLeft.set(0.2);
             winchRight.set(0.2);
-        } else if(btn8){
+        } else if(btn8){ //And the other with 8
             winchLeft.set(-0.2);
             winchRight.set(-0.2);
-        } else {
+        } else { //And stop with no buttons
             winchLeft.set(0);
             winchRight.set(0);
         }
