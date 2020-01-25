@@ -90,8 +90,6 @@ public class Limelight {
 		//1024 x 576 
 		//1280 x 720
 	}
-
-	}
 	/**
 	 * Update all methods in need of routine refreshing
 	 * 
@@ -105,8 +103,6 @@ public class Limelight {
 		updateLatency();
 		updateLedMode();
 		updateCamMode();
-
-
 	}
 	
 	/**
