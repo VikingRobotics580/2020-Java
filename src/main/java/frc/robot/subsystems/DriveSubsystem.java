@@ -56,7 +56,7 @@ public class DriveSubsystem extends Subsystem {
         _lFaults = new Faults();
         _rFaults = new Faults();
 
-        Shuffleboard.getTab("Gyro").add((Sendable) gyro);
+        SmartDashboard.putData(gyro);
 
     }
 
