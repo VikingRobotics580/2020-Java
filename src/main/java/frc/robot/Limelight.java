@@ -92,17 +92,30 @@ public class Limelight {
 	}
 	/*
 	// Aims when button is pushed
-	float Kp = -0.1f; // Proportional control constant
+	float KpAim = -0.1f;
+	float KpDistance = -0.1f;
+	float min_aim_command = 0.05f;
 
-	std::shared_ptr<NetworkTable> table = NetworkTable::GetTable("limelight");
+	std.shared_ptr<NetworkTable> table = NetworkTable.GetTable("limelight");
 	float tx = table->GetNumber("tx");
-	//tx is horizontal offset from crosshair to target
-	if (joystick->GetRawButton(9)){
-        float heading_error = tx;
-        steering_adjust = Kp * tx;
+	float ty = table->GetNumber("ty");
 
-        left_command+=steering_adjust;
-        right_command-=steering_adjust;
+	if (joystick->GetRawButton(9)){
+        float heading_error = -tx;
+        float distance_error = -ty;
+        float steering_adjust = 0.0f;
+
+        if (tx > 1.0){
+                steering_adjust = KpAim*heading_error - min_aim_command;
+        }
+        else if (tx < 1.0){
+                steering_adjust = KpAim*heading_error + min_aim_command;
+        }
+
+        float distance_adjust = KpDistance * distance_error;
+
+        _lFront += steering_adjust + distance_adjust;
+        _rFront -= steering_adjust + distance_adjust;
 	}
 */
 	/**
