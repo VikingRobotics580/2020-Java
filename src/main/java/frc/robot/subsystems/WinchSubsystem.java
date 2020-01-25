@@ -6,6 +6,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+import frc.robot.commands.WinchCommand;
+
 public class WinchSubsystem extends Subsystem {
 
     WPI_TalonSRX winchLeft;
@@ -25,6 +27,7 @@ public class WinchSubsystem extends Subsystem {
 
         winchLeft.set(0);
         winchRight.set(0);
+        setDefaultCommand(new WinchCommand());
 
     }
 
@@ -35,10 +38,10 @@ public class WinchSubsystem extends Subsystem {
 
         if(btn7){
             winchLeft.set(0.2);
-            winchRight.set(-0.2);
+            winchRight.set(0.2);
         } else if(btn8){
             winchLeft.set(-0.2);
-            winchRight.set(0.2);
+            winchRight.set(-0.2);
         } else {
             winchLeft.set(0);
             winchRight.set(0);
