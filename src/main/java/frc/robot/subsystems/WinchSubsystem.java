@@ -15,11 +15,10 @@ public class WinchSubsystem extends Subsystem {
 
     public WinchSubsystem() {
  
-        winchLeft = new WPI_TalonSRX(5);
-        winchRight = new WPI_TalonSRX(6);
+        winchLeft = new WPI_TalonSRX(0);
+        winchRight = new WPI_TalonSRX(1);
 
     }
-
 
     public void initDefaultCommand() {
 
