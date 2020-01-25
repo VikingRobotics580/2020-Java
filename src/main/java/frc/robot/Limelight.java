@@ -7,7 +7,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
-import org.firstfrc.team5895.robot.lib.NavX; //Need to fix. NavX is a sensor for angles. 
+ 
 
 public class Limelight {
 
@@ -26,17 +26,18 @@ public class Limelight {
 	private LedMode led = LedMode.ON;
 	private CamMode cam = CamMode.VISION_PROCESSING; // operation mode
 	private double pipeline = 0; // current pipeline
-	private VideoMode videoMode;
+	private final VideoMode videoMode;
+
 	/**
 	 * Sets enum types of LED mode: ON, OFF, BLINKING
 	 * 
 	 */
 	public enum LedMode {
-		ON(0),OFF(1),BLINKING(2);
+		ON(0), OFF(1), BLINKING(2);
 
 		private double value;
 
-		LedMode(double value){
+		LedMode(final double value) {
 			this.value = value;
 		}
 
@@ -46,15 +47,16 @@ public class Limelight {
 	}
 
 	/**
-	 * Sets enum types of Camera mode: VISION_PROCESSING (Vision mode), DRIVER_CAMERA (Raw Image)
+	 * Sets enum types of Camera mode: VISION_PROCESSING (Vision mode),
+	 * DRIVER_CAMERA (Raw Image)
 	 *
 	 */
 	public enum CamMode {
-		VISION_PROCESSING(0),DRIVER_CAMERA(1);
+		VISION_PROCESSING(0), DRIVER_CAMERA(1);
 
 		private double value;
 
-		CamMode(double value){
+		CamMode(final double value) {
 			this.value = value;
 		}
 
@@ -62,44 +64,47 @@ public class Limelight {
 			return value;
 		}
 	}
-	
+
 	/**
-	 * Start NetworkTable
-	 * Initialize NetworkTable of Limelight
-	 * Run UsbCamera
+	 * Start NetworkTable Initialize NetworkTable of Limelight Run UsbCamera
 	 */
 	public Limelight() {
 		NetworkTableInstance.getDefault().startClient(); //
 		table = NetworkTableInstance.getDefault().getTable("limelight");
-		
+
 		// usb camera
-		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-		//camera.setResolution(640, 360); //only works for 640 x 360
+		final UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		// camera.setResolution(640, 360); //only works for 640 x 360
 		videoMode = new VideoMode(PixelFormat.kYUYV, 800, 448, 30);
-		//set DriverStation resolution to:
-		//320 x 240 for ~15 fps
-		//160 x 120 for ~20 fps
+		// set DriverStation resolution to:
+		// 320 x 240 for ~15 fps
+		// 160 x 120 for ~20 fps
 		camera.setFPS(30);
 		camera.setVideoMode(videoMode);
-		//usable width/height values: 
-		//176 x 144
-		//320 x 180
-		//640 x 360 
-		//640 x 480 
-		//800 x 448 
-		//1024 x 576 
-		//1280 x 720
+		// usable width/height values:
+		// 176 x 144
+		// 320 x 180
+		// 640 x 360
+		// 640 x 480
+		// 800 x 448
+		// 1024 x 576
+		// 1280 x 720
 	}
+	/*
+	// Aims when button is pushed
+	float Kp = -0.1f; // Proportional control constant
 
-	public static double posX, posY; // feet
-	public static double lastDistance = 0d; // distance traveled the last time update() was called
-	public double getDistanceTraveled() {
-		return (leftEncoder.getDistance()+rightEncoder.getDistance())/2;
-		//we're not using an encoder
+	std::shared_ptr<NetworkTable> table = NetworkTable::GetTable("limelight");
+	float tx = table->GetNumber("tx");
+	//tx is horizontal offset from crosshair to target
+	if (joystick->GetRawButton(9)){
+        float heading_error = tx;
+        steering_adjust = Kp * tx;
+
+        left_command+=steering_adjust;
+        right_command-=steering_adjust;
 	}
-	public double getAngle() {
-		return navX.getAngle(); // navX reads angle in degree
-	}
+*/
 	/**
 	 * Update all methods in need of routine refreshing
 	 * 
@@ -113,27 +118,18 @@ public class Limelight {
 		updateLatency();
 		updateLedMode();
 		updateCamMode();
-
-		//changing position and distance
-		double distance = getDistanceTraveled()-lastDistance;
-		//Adjusting angle based distance (aiming)
-		posX += distance*Math.cos(Math.toRadians(getAngle()));
-		posY += distance*Math.sin(Math.toRadians(getAngle()));
-		
-		distance = getDistanceTraveled();
-			
 	}
-	
+
 	/**
 	 * Update boolean hasTarget
 	 */
 	public void updateHasTarget() {
-		double val = table.getEntry("tv").getDouble(-1);
+		final double val = table.getEntry("tv").getDouble(-1);
 		if (val == 0d) {
 			hasTarget = false;
 		} else if (val == 1d) {
 			hasTarget = true;
-		} 
+		}
 	}
 
 	public void updateHorizontalOffset() {
@@ -143,7 +139,6 @@ public class Limelight {
 	public void updateVerticalOffset() {
 		verticalOffset = table.getEntry("ty").getDouble(-1);
 	}
-
 
 	public void updateTargetArea() {
 		area = table.getEntry("ta").getDouble(-1);
@@ -169,15 +164,15 @@ public class Limelight {
 		table.getEntry("pipeline").setDouble(pipeline);
 	}
 
-	public void setLedMode(LedMode led) {
+	public void setLedMode(final LedMode led) {
 		this.led = led;
 	}
 
-	public void setCamMode(CamMode cam) {
+	public void setCamMode(final CamMode cam) {
 		this.cam = cam;
 	}
 
-	public void setPipeline(double pipeline) {
+	public void setPipeline(final double pipeline) {
 		this.pipeline = Math.max(Math.min(pipeline, 9), 0);
 	}
 
