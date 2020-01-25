@@ -7,6 +7,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
+import org.firstfrc.team5895.robot.lib.NavX; //Need to fix. NavX is a sensor for angles. 
 
 public class Limelight {
 
@@ -94,8 +95,11 @@ public class Limelight {
 	public static double lastDistance = 0d; // distance traveled the last time update() was called
 	public double getDistanceTraveled() {
 		return (leftEncoder.getDistance()+rightEncoder.getDistance())/2;
+		//we're not using an encoder
 	}
-	
+	public double getAngle() {
+		return navX.getAngle(); // navX reads angle in degree
+	}
 	/**
 	 * Update all methods in need of routine refreshing
 	 * 
@@ -112,7 +116,7 @@ public class Limelight {
 
 		//changing position and distance
 		double distance = getDistanceTraveled()-lastDistance;
-		
+		//Adjusting angle based distance (aiming)
 		posX += distance*Math.cos(Math.toRadians(getAngle()));
 		posY += distance*Math.sin(Math.toRadians(getAngle()));
 		
