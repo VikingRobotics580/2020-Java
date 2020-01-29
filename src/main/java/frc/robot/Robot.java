@@ -31,10 +31,10 @@ import edu.wpi.first.wpilibj.smartdashboard.*;
  */
 public class Robot extends TimedRobot {
   //public static final DriveSubsystem drive = new DriveSubsystem();
-  public static final ServoSubsystem servo = new ServoSubsystem();
+  //public static final BallIntakeSubsystem intake = new BallIntakeSubsystem();
+  //public static final WinchSubsystem winch = new WinchSubsystem();
+  //public static final ServoSubsystem servo = new ServoSubsystem();
   public static final Limelight limelight = new Limelight();
-  public static final BallIntakeSubsystem intake = new BallIntakeSubsystem();
-  public static final WinchSubsystem winch = new WinchSubsystem();
 
   ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
