@@ -9,6 +9,7 @@ Team 580 Drive Subsystem
 package frc.robot.subsystems;
 
 import static frc.robot.OI.*;
+import static frc.robot.RobotMap.*;
 
 import com.ctre.phoenix.motorcontrol.Faults;
 import com.ctre.phoenix.motorcontrol.InvertType;
@@ -40,10 +41,10 @@ public class DriveSubsystem extends Subsystem {
     // This instantiates, or sets up all of the variables. For example, it sets the right front wheel to the 2nd talon.
     public DriveSubsystem() {
 
-        _rFront = new WPI_TalonSRX(2);
-        _rBack = new WPI_TalonSRX(3);
-        _lFront = new WPI_TalonSRX(0);
-        _lBack = new WPI_TalonSRX(1);
+        _rFront = new WPI_TalonSRX(TLN_2);
+        _rBack = new WPI_TalonSRX(TLN_3);
+        _lFront = new WPI_TalonSRX(TLN_0);
+        _lBack = new WPI_TalonSRX(TLN_1);
 
         _diffDrive = new DifferentialDrive(_lFront, _rFront);
         _lFaults = new Faults();
@@ -66,7 +67,6 @@ public class DriveSubsystem extends Subsystem {
         double forw = -1 * rightJoystick.getRawAxis(1); /* pos = forward */
         double turn = +1 * rightJoystick.getRawAxis(2); /* pos = right */
         boolean btn1 = rightJoystick.getRawButton(1); /* if button is down, print joystick values */
-        boolean btn7 = rightJoystick.getRawButton(7);
 
         // Margin of error for joystick sensitivity = 10%
         if (Math.abs(forw) < 0.10) {
