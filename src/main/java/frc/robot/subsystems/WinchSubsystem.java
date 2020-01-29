@@ -1,46 +1,43 @@
 package frc.robot.subsystems;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.WinchCommand;
+//Allows access to necessary classes
 
-import static frc.robot.OI.*;
+import static frc.robot.RobotMap.*;
+//Allows access to established joystick
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+//Allows use of talon/motor methods
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-
-import frc.robot.commands.WinchCommand;
 
 public class WinchSubsystem extends Subsystem {
 
     WPI_TalonSRX winchLeft;
     WPI_TalonSRX winchRight;
-    public boolean btn7;
-    public boolean btn8;
 
-    public WinchSubsystem() {
+    public WinchSubsystem() { //Constructor
  
-        winchLeft = new WPI_TalonSRX(0);
-        winchRight = new WPI_TalonSRX(1);
+        winchLeft = new WPI_TalonSRX(TLN_WNC_0); //Defines which port the talons connect to
+        winchRight = new WPI_TalonSRX(TLN_WNC_1);
 
     }
 
-    public void initDefaultCommand() {
+    public void initDefaultCommand() { //Runs on startup
 
-        winchLeft.set(0);
+        winchLeft.set(0); //Stops motors by default (Precautionary)
         winchRight.set(0);
-        setDefaultCommand(new WinchCommand());
+        setDefaultCommand(new WinchCommand()); //Variant REQUIRED for subsystems
 
     }
 
     public void rotateWinch() {
 
-        btn7 = rightJoystick.getRawButton(7);
-        btn8 = rightJoystick.getRawButton(8);
-
-        if(btn7){ //Roate one way with button 7
-            winchLeft.set(0.2);
-            winchRight.set(0.2);
-        } else if(btn8){ //And the other with 8
-            winchLeft.set(-0.2);
-            winchRight.set(-0.2);
+        if(WNC_Pul){ //Roate one way with button 7
+            winchLeft.set(WNC_Spd);
+            winchRight.set(WNC_Spd);
+        } else if(WNC_Stp){ //And the other with 8
+            winchLeft.set(-WNC_Spd);
+            winchRight.set(-WNC_Spd);
         } else { //And stop with no buttons
             winchLeft.set(0);
             winchRight.set(0);
