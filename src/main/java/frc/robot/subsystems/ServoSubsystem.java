@@ -1,13 +1,14 @@
 package frc.robot.subsystems;
+import edu.wpi.first.wpilibj.command.Subsystem; 
+import frc.robot.commands.ServoCommand;
+//Imports data from other classes, variant is REQUIRED for subsystems
 
 import static frc.robot.OI.*;
-
-import frc.robot.commands.ServoCommand;
-
-
-import edu.wpi.first.wpilibj.command.Subsystem; 
+//Allows use of the existing joystick
 
 import edu.wpi.first.wpilibj.Servo;
+//Allows use of servo methods
+
 
 public class ServoSubsystem extends Subsystem {
 
@@ -16,15 +17,18 @@ public class ServoSubsystem extends Subsystem {
     public boolean btn5;
     public int defaultAngle;
 
-    public ServoSubsystem() {
-        servo0 = new Servo(0);
-        defaultAngle = 145;
+    public ServoSubsystem() { //Consatructor
+
+        servo0 = new Servo(0); //Sets port for servo
+        defaultAngle = 145; //Default angle for use later, change to set default
+
     }
 
 
-    public void initDefaultCommand() {
-        servo0.setAngle(defaultAngle);
-        setDefaultCommand(new ServoCommand());
+    public void initDefaultCommand() { //Runs on startup
+
+        servo0.setAngle(defaultAngle); //Moves servo to default position
+        setDefaultCommand(new ServoCommand()); //Variant is REQUIRED for subsystems
 
     }
 
