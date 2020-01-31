@@ -39,10 +39,9 @@ public class RobotMap {
     public static int TLN_1 = 1; //Talon 1
     public static int TLN_2 = 2; //Talon 2
     public static int TLN_3 = 3; //Talon 3
-    public static int TLN_BIT_BAK = 4; //Ball intake motor
-    public static int TLN_BIT_FRT = 5; //Ball intake motor
-    public static int TLN_WNC_0 = 6; //Winch motor 1
-    public static int TLN_WNC_1 = 7; //Winch motor 2
+    public static int TLN_BIT = 4; //Ball intake motor
+    public static int TLN_WNC_0 = 5; //Winch motor 1
+    public static int TLN_WNC_1 = 6; //Winch motor 2
 
     //Other ports
     public static int SRV_PRT = 0; //Servo port
