@@ -4,6 +4,7 @@ import frc.robot.commands.ServoCommand;
 //Imports data from other classes, variant is REQUIRED for subsystems
 
 import static frc.robot.RobotMap.*;
+import static frc.robot.OI.*;
 //Allows use of the existing joystick
 
 import edu.wpi.first.wpilibj.Servo;
@@ -32,12 +33,12 @@ public class ServoSubsystem extends Subsystem {
 
     public void rotateArm() {
 
-        if(SRV_Pos){
+        if(rightJoystick.getRawButton(SRV_Pos)){
            // if(servo0.getAngle() < defaultAngle + 90)
                 servo0.setAngle(servo0.getAngle() + SRV_Spd);
         }
 
-        if(SRV_Neg){
+        if(rightJoystick.getRawButton(SRV_Neg)){
            // if(servo0.getAngle() > defaultAngle - 90)
                 servo0.setAngle(servo0.getAngle() - SRV_Spd);
         }
