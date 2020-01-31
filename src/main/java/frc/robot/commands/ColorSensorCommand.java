@@ -6,7 +6,7 @@ import frc.robot.Robot;
 public class ColorSensorCommand extends Command {
 
 	public ColorSensorCommand() {
-		requires(Robot.color);
+		//requires(Robot.color);
 	}
 
 	@Override
@@ -15,7 +15,7 @@ public class ColorSensorCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.color.senseColor();
+		//Robot.color.senseColor();
 	}
 
 	@Override
