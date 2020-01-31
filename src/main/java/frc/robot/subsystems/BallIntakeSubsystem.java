@@ -4,6 +4,7 @@ import frc.robot.commands.BallIntakeCommand;
 //Imports data from other classes, variant is REQUIRED for subsystems
 
 import static frc.robot.RobotMap.*;
+import static frc.robot.OI.*;
 //Allows use of the existing joystick
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -29,10 +30,10 @@ public class BallIntakeSubsystem extends Subsystem {
 
     public void rotateIntake(){ //Runs intermitantly after start
 
-        if(BIT_Pul)
+        if(rightJoystick.getRawButton(BIT_Pul))
             ballIntake.set(BIT_Spd); //Set speed when button 6 is pressed
 
-        if(BIT_Stp)
+        if(rightJoystick.getRawButton(BIT_Stp))
             ballIntake.set(0); //Set speed to 0 when button 4 is pressed
 
     }

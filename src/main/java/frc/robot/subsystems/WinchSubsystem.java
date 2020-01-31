@@ -4,6 +4,7 @@ import frc.robot.commands.WinchCommand;
 //Allows access to necessary classes
 
 import static frc.robot.RobotMap.*;
+import static frc.robot.OI.*;
 //Allows access to established joystick
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -32,10 +33,10 @@ public class WinchSubsystem extends Subsystem {
 
     public void rotateWinch() {
 
-        if(WNC_Pul){ //Roate one way with button 7
+        if(rightJoystick.getRawButton(WNC_Pul)){ //Roate one way with button 7
             winchLeft.set(WNC_Spd);
             winchRight.set(WNC_Spd);
-        } else if(WNC_Stp){ //And the other with 8
+        } else if(rightJoystick.getRawButton(WNC_Stp)){ //And the other with 8
             winchLeft.set(-WNC_Spd);
             winchRight.set(-WNC_Spd);
         } else { //And stop with no buttons

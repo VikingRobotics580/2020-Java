@@ -22,12 +22,12 @@ public class RobotMap {
     */
 
     //Joystick
-    public static boolean SRV_Neg = rightJoystick.getRawButton(3); //Make servo move negatively
-    public static boolean BIT_Pul = rightJoystick.getRawButton(4); //Starts intake
-    public static boolean SRV_Pos = rightJoystick.getRawButton(5); //Make servo move positively
-    public static boolean BIT_Stp = rightJoystick.getRawButton(6); //Stops intake
-    public static boolean WNC_Pul = rightJoystick.getRawButton(7); //Extends winch
-    public static boolean WNC_Stp = rightJoystick.getRawButton(8); //Pulls winch
+    public static int SRV_Neg = 3; //Make servo move negatively
+    public static int BIT_Pul = 4; //Starts intake
+    public static int SRV_Pos = 5; //Make servo move positively
+    public static int BIT_Stp = 6; //Stops intake
+    public static int WNC_Pul = 7; //Extends winch
+    public static int WNC_Stp = 8; //Pulls winch
 
     //Speeds
     public static double BIT_Spd = 0.2; //Ball intake speed
