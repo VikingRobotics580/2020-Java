@@ -15,7 +15,7 @@ public class ServoSubsystem extends Subsystem {
     public Servo servo0;
     public int defaultAngle;
 
-    public ServoSubsystem() { //Consatructor
+    public ServoSubsystem() { //Constructor, Finn's huge mistake
 
         servo0 = new Servo(SRV_PRT); //Sets port for servo
         defaultAngle = 145; //Default angle for use later, change to set default
