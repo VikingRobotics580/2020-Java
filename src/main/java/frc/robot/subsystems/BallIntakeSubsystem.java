@@ -16,10 +16,9 @@ public class BallIntakeSubsystem extends Subsystem {
 
     public BallIntakeSubsystem() { //Constructor
 
-        ballIntake = new WPI_TalonSRX(TLN_BIT); //Identifies port of talon/motor
+        ballIntake = new WPI_TalonSRX(0); //Identifies port of talon/motor
 
     }
-
 
     public void initDefaultCommand() { //Runs on startup
 
@@ -30,10 +29,13 @@ public class BallIntakeSubsystem extends Subsystem {
 
     public void rotateIntake(){ //Runs intermitantly after start
 
-        if(rightJoystick.getRawButton(BIT_Pul))
+        if(rightJoystick.getRawButton(6)){
+            System.out.println("boob");
             ballIntake.set(BIT_Spd); //Set speed when button 6 is pressed
+        }
 
-        if(rightJoystick.getRawButton(BIT_Stp))
+
+        if(rightJoystick.getRawButton(4))
             ballIntake.set(0); //Set speed to 0 when button 4 is pressed
 
     }
