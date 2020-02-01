@@ -36,7 +36,6 @@ public class Robot extends TimedRobot {
   //public static final ServoSubsystem servo = new ServoSubsystem();
   //public static final LEDSubsystem LED = new LEDSubsystem();
   public static final Limelight limelight = new Limelight();
-  public static final ColorSensorSubsystem color = new ColorSensorSubsystem();
 
   ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 

@@ -18,6 +18,7 @@ public class RobotMap {
     Stp: Stop motor
     Spd: Speed at which something moves
     TLN: Talon
+    CLR: Color Sensor
     PRT: Port
     */
 
