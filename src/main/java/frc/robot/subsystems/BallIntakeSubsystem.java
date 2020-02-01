@@ -30,7 +30,6 @@ public class BallIntakeSubsystem extends Subsystem {
     public void rotateIntake(){ //Runs intermitantly after start
 
         if(rightJoystick.getRawButton(6)){
-            System.out.println("boob");
             ballIntake.set(BIT_Spd); //Set speed when button 6 is pressed
         }
 
