@@ -60,6 +60,9 @@ public class Tutorial { //Curly braces act as a sort of container, similar to th
             System.out.println("Integer equals 2."); //It's 2 by process of elimination
         }
 
+        if(rightJoystick.getRawButton(TUT)) //This 
+            System.out.println("Button -1 is pushed!?");
+
     }
 
 }
@@ -81,5 +84,17 @@ comment explaining it. You're not the only one working here (hopefully), and you
 
 Moving on, let's run through what some of the other classes do.
 
+Main.java: The first class that runs, everything stems from it. DO NOT MESS WITH IT, IT DOESN'T NEED TO CHANGE
 
+OI.java: Creates the joystick object. It's imported pretty much everywhere, that was every class can potentially use it.
+
+Robot.java: Another important class, don't need to change much. If you're creating a new subsystem, you need to create a new object
+below the class header. You can look at the others already written there to base it off of.
+
+RobotMap.java: My baby boy. It stores values for ports, button inputs, etc. That way, if we change a port, we change it once in one
+place, rather than in five different places across multiple classes. Like OI, it's also imported virtually everywhere.
+
+
+All the classes in the commands and subsystems folders complete a specific task. I've created a tutorial command and subsystem class to
+look at next, so go ahead and head to the TutorialCommand.java file first, and read from the top.
 */

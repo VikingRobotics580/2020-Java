@@ -27,6 +27,7 @@ public class RobotMap {
     Stp: Stop motor
     Spd: Speed at which something moves
     TLN: Talon
+    TUT: Tutorial
     CLR: Color Sensor
     PRT: Port
     */
@@ -45,6 +46,7 @@ public class RobotMap {
     public static double WNC_Spd = 0.3; //Winch speed
 
     //Talon ports
+    public static int TUT = -1; //Tutorial
     public static int TLN_0 = 0; //Talon 0
     public static int TLN_1 = 1; //Talon 1
     public static int TLN_2 = 2; //Talon 2
