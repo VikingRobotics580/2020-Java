@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import edu.wpi.first.networktables.*;
 
-public class LimelightSubsystem {
+import frc.robot.commands.LimelightCommand;
+
+public class LimelightSubsystem extends Subsystem {
     final double vertIterations = 0;
     NetworkTable table;
     NetworkTableEntry tx; // Horizontal Offset From Crosshair To Target (LL1: -27 degrees to 27 degrees | LL2: -29.8 to 29.8 degrees)
@@ -158,6 +160,11 @@ public class LimelightSubsystem {
     
     public void defaultValue(){
         lightState.setValue(4);
+    }
+
+    @Override
+    protected void initDefaultCommand() {
+        setDefaultCommand(new LimelightCommand());
     }
 		
 }
