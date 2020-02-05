@@ -1,6 +1,15 @@
-package frc.robot;
+/*
+==================================================================================
+This code is property of 580 gang, fool. Get outta here, city slicker.
+Proganger team leaders: Finn Cawley and Bhada Yun
+Researcher and coordinator: Kate Hirshberg
+Treasurer: David Ju
+gamer: The Orb
+Queen of Racism: Kamron
+==================================================================================
+*/
 
-import static frc.robot.OI.*;
+package frc.robot;
 
 //This code is FINN'S baby
 
@@ -31,16 +40,16 @@ public class RobotMap {
     public static int WNC_Stp = 8; //Pulls winch
 
     //Speeds
-    public static double BIT_Spd = 0.4; //Ball intake speed
+    public static double BIT_Spd = 0.2; //Ball intake speed
     public static double SRV_Spd = 2; //Servo Speed
     public static double WNC_Spd = 0.3; //Winch speed
 
     //Talon ports
-    public static int TLN_0 = 4; //Talon 0
+    public static int TLN_0 = 0; //Talon 0
     public static int TLN_1 = 1; //Talon 1
     public static int TLN_2 = 2; //Talon 2
     public static int TLN_3 = 3; //Talon 3
-    public static int TLN_BIT = 0; //Ball intake motor
+    public static int TLN_BIT = 4; //Ball intake motor
     public static int TLN_WNC_0 = 5; //Winch motor 1
     public static int TLN_WNC_1 = 6; //Winch motor 2
 
