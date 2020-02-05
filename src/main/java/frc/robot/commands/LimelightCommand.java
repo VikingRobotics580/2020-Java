@@ -15,7 +15,7 @@ public class LimelightCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.limelight.rotateArm();
+		Robot.limelight.update();;
 	}
 
 	@Override
