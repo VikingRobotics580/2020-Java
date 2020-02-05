@@ -33,9 +33,9 @@ public class Robot extends TimedRobot {
   //public static final DriveSubsystem drive = new DriveSubsystem();
   //public static final BallIntakeSubsystem intake = new BallIntakeSubsystem();
   //public static final WinchSubsystem winch = new WinchSubsystem();
-  public static final ServoSubsystem servo = new ServoSubsystem();
   //public static final LEDSubsystem LED = new LEDSubsystem();
-  public static final Limelight limelight = new Limelight();
+  public static final ServoSubsystem servo = new ServoSubsystem();
+  public static final LimelightSubsystem limelight = new LimelightSubsystem();
 
   ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 

@@ -23,7 +23,6 @@ public class ServoSubsystem extends Subsystem {
 
     }
 
-
     public void initDefaultCommand() { //Runs on startup
 
         servo0.setAngle(defaultAngle); //Moves servo to default position
@@ -36,7 +35,6 @@ public class ServoSubsystem extends Subsystem {
         if(rightJoystick.getRawButton(SRV_Pos)){
            // if(servo0.getAngle() < defaultAngle + 90)
                 servo0.setAngle(servo0.getAngle() + SRV_Spd);
-                System.out.println("boob");
         }
 
         if(rightJoystick.getRawButton(SRV_Neg)){
