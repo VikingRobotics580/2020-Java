@@ -119,4 +119,7 @@ place, rather than in five different places across multiple classes. Like OI, it
 
 All the classes in the commands and subsystems folders complete a specific task. I've created a tutorial command and subsystem class to
 look at next, so go ahead and head to the TutorialCommand.java file first, and read from the top.
-*/
+
+Oh, real quick, these three tutorial files should be copied into new projects in coming years for future recruits, so long as not major
+structural changes take place. Just make sure to update the RobotMap and Robot files to support these, and make any necessary changes
+to these tutorials as the need arises. */
