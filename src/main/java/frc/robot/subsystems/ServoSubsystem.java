@@ -38,7 +38,7 @@ public class ServoSubsystem extends Subsystem {
         }
 
         if(rightJoystick.getRawButton(SRV_Neg)){
-            if(servo0.getAngle() > defaultAngle + 4)
+            if(servo0.getAngle() > defaultAngle + 3)
                 servo0.setAngle(servo0.getAngle() - SRV_Spd);
         }
 

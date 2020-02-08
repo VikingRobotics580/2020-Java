@@ -42,7 +42,7 @@ public class RobotMap {
 
     //Speeds
     public static double BIT_Spd = 0.2; //Ball intake speed
-    public static double SRV_Spd = 2; //Servo Speed
+    public static double SRV_Spd = 3; //Servo Speed
     public static double WNC_Spd = 0.3; //Winch speed
 
     //Talon ports
