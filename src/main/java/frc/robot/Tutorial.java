@@ -8,6 +8,12 @@ Comments are designated in two ways. Using a slash asterisk to open, and asteris
 comment (Like this paragraph). Or, using two consecutive forward slashes can designate the rest of a line as a comment.
 Make sure to leave comments for other programmers, so they can understand what your code does.
 
+Really quickly, I should explain semicolons and curly braces. (With exceptions) all lines will end with a curly brace or a semicolon.
+If it's a statement like a variable declaration, importing or calling a method, it'll end with a semicolon. If it's a sort of container,
+like an if statement, class header or method header, it will be followed with an open curly brace. The contents of the 'container' will
+follow, then a close curly brace. If only one line of code follows a container, these curly braces are unnecessary, and the container
+will run the first line of code to follow it.
+
 With that out of the way, let's import some objects.
 */
 
@@ -20,7 +26,7 @@ Importing is very important , as it allows a class to access methods and variabl
 Methods are a sort of command meant to complete a specific task when given an input.
 */
 
-public class Tutorial { //Curly braces act as a sort of container, similar to the slash asterisk for comments
+public class Tutorial { //This is a class header, every class has one with its own name in place of "Tutorial"
 
     public void tutorial() { /*This is a method header, which can be accessed from other classes. We won't be calling this method in
         another class, but some stuff won't work for demonstration purposes if it's not in a method. 
@@ -60,8 +66,12 @@ public class Tutorial { //Curly braces act as a sort of container, similar to th
             System.out.println("Integer equals 2."); //It's 2 by process of elimination
         }
 
-        if(rightJoystick.getRawButton(TUT)) //This 
+        if(rightJoystick.getRawButton(TUT)) //This is an example of a single line following an if statement not requiring curly braces
             System.out.println("Button -1 is pushed!?");
+        /*rightJoystick was imported from OI.java, so it can be used despite not being declared in this class. getRawButton is a method
+        usable by a joystick that detects a boolean value from a specific button, specified by the variable in parenthesis, in this
+        case it's TUT. TUT is a variable imported from RobotMap, and is set to -1 (to not conflict with actual robot code).
+        */
 
     }
 
