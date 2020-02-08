@@ -33,12 +33,11 @@ public class RobotMap {
     */
 
     //Joystick
-    public static int SRV_Neg = 3; //Make servo move negatively
-    public static int BIT_Pul = 4; //Starts intake
+    public static int SRV_Neg = 6; //Make servo move negatively
+    public static int BIT = 2; //Starts intake
     public static int SRV_Pos = 5; //Make servo move positively
-    public static int BIT_Stp = 6; //Stops intake
-    public static int WNC_Pul = 7; //Extends winch
-    public static int WNC_Stp = 8; //Pulls winch
+    public static int WNC_Pul = 1; //Extends winch
+    public static int WNC_Stp = 4; //Pulls winch
 
     //Speeds
     public static double BIT_Spd = 0.2; //Ball intake speed
