@@ -13,10 +13,12 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 public class BallIntakeSubsystem extends Subsystem {
 
     WPI_TalonSRX ballIntake;
+    boolean active;
 
     public BallIntakeSubsystem() { //Constructor
 
         ballIntake = new WPI_TalonSRX(0); //Identifies port of talon/motor
+        active = false;
 
     }
 
@@ -29,13 +31,19 @@ public class BallIntakeSubsystem extends Subsystem {
 
     public void rotateIntake(){ //Runs intermitantly after start
 
-        if(leftJoystick.getRawButton(6)){
-            ballIntake.set(BIT_Spd); //Set speed when button 6 is pressed
+        if(leftJoystick.getRawButton(BIT)){
+            
+            if(!active){
+                ballIntake.set(BIT_Spd); //Set speed when cross is pressed
+                active = true;
+            } 
+
+            if(active){
+                ballIntake.set(0);
+                active = false;
+            }
+
         }
-
-
-        if(leftJoystick.getRawButton(4))
-            ballIntake.set(0); //Set speed to 0 when button 4 is pressed
 
     }
 
