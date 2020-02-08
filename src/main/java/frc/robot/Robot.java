@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
 
+//import io.github.oblarg.oblog;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 //import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -42,7 +43,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     SmartDashboard.putData(gyro);
+    //Logger.configureLoggingAndConfig(this, false);
   }
+
 
   public void periodic() {
     Scheduler.getInstance().run();
