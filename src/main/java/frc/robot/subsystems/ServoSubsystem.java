@@ -19,7 +19,7 @@ public class ServoSubsystem extends Subsystem {
     public ServoSubsystem() { //Constructor, Finn's huge mistake
 
         servo0 = new Servo(SRV_PRT); //Sets port for servo
-        defaultAngle = 145; //Default angle for use later, change to set default
+        defaultAngle = 0; //Default angle for use later, change to set default
 
     }
 
@@ -33,12 +33,12 @@ public class ServoSubsystem extends Subsystem {
     public void rotateArm() {
 
         if(rightJoystick.getRawButton(SRV_Pos)){
-           // if(servo0.getAngle() < defaultAngle + 90)
+            if(servo0.getAngle() < defaultAngle + 90)
                 servo0.setAngle(servo0.getAngle() + SRV_Spd);
         }
 
         if(rightJoystick.getRawButton(SRV_Neg)){
-           // if(servo0.getAngle() > defaultAngle - 90)
+            if(servo0.getAngle() > defaultAngle + 4)
                 servo0.setAngle(servo0.getAngle() - SRV_Spd);
         }
 
