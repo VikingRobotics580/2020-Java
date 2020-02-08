@@ -57,16 +57,16 @@ public class DriveSubsystem extends Subsystem {
     // This is the driver method, that is run constantly in the DriveCommand. This is what takes raw data from the joysticks and pushes power to the motors.
     public void Driver() {
 
-        SmartDashboard.putNumber("Joystick X value", rightJoystick.getX());
-        SmartDashboard.putNumber("Joystick Y value", rightJoystick.getY());
+        SmartDashboard.putNumber("Joystick X value",leftJoystick.getX());
+        SmartDashboard.putNumber("Joystick Y value",leftJoystick.getY());
 
         String work = "";
 
         // Constantly update the forw and turn variables with joystick data:
 
-        double forw = -1 * rightJoystick.getRawAxis(1); /* pos = forward */
-        double turn = +1 * rightJoystick.getRawAxis(2); /* pos = right */
-        boolean btn1 = rightJoystick.getRawButton(1); /* if button is down, print joystick values */
+        double forw = -1 *leftJoystick.getRawAxis(1); /* pos = forward */
+        double turn = +1 *rightJoystick.getRawAxis(2); /* pos = right */
+        boolean btn1 =leftJoystick.getRawButton(1); /* if button is down, print joystick values */
 
         // Margin of error for joystick sensitivity = 10%
         if (Math.abs(forw) < 0.10) {

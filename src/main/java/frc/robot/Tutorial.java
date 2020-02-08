@@ -78,9 +78,9 @@ public class Tutorial { //This is a class header, every class has one with its o
             System.out.println("Integer equals 2 or 3."); //It's 2 or 3 by process of elimination
         }
 
-        if(rightJoystick.getRawButton(TUT)) //This is an example of a single line following an if statement not requiring curly braces
+        if(leftJoystick.getRawButton(TUT)) //This is an example of a single line following an if statement not requiring curly braces
             System.out.println("Button -1 is pushed!?");
-        /*rightJoystick was imported from OI.java, so it can be used despite not being declared in this class. getRawButton is a method
+        /*leftJoystick was imported from OI.java, so it can be used despite not being declared in this class. getRawButton is a method
         usable by a joystick that detects a boolean value from a specific button, specified by the variable in parenthesis, in this
         case it's TUT. TUT is a variable imported from RobotMap, and is set to -1 (to not conflict with actual robot code).
         */
