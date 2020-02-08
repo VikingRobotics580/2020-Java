@@ -78,9 +78,9 @@ public class Tutorial { //This is a class header, every class has one with its o
             System.out.println("Integer equals 2 or 3."); //It's 2 or 3 by process of elimination
         }
 
-        if(rightJoystick.getRawButton(TUT)) //This is an example of a single line following an if statement not requiring curly braces
+        if(leftJoystick.getRawButton(TUT)) //This is an example of a single line following an if statement not requiring curly braces
             System.out.println("Button -1 is pushed!?");
-        /*rightJoystick was imported from OI.java, so it can be used despite not being declared in this class. getRawButton is a method
+        /*leftJoystick was imported from OI.java, so it can be used despite not being declared in this class. getRawButton is a method
         usable by a joystick that detects a boolean value from a specific button, specified by the variable in parenthesis, in this
         case it's TUT. TUT is a variable imported from RobotMap, and is set to -1 (to not conflict with actual robot code).
         */
@@ -119,4 +119,7 @@ place, rather than in five different places across multiple classes. Like OI, it
 
 All the classes in the commands and subsystems folders complete a specific task. I've created a tutorial command and subsystem class to
 look at next, so go ahead and head to the TutorialCommand.java file first, and read from the top.
-*/
+
+Oh, real quick, these three tutorial files should be copied into new projects in coming years for future recruits, so long as not major
+structural changes take place. Just make sure to update the RobotMap and Robot files to support these, and make any necessary changes
+to these tutorials as the need arises. */
