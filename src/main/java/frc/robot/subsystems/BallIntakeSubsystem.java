@@ -32,13 +32,13 @@ public class BallIntakeSubsystem extends Subsystem {
     public void rotateIntake(){ //Runs intermitantly after start
 
         if(leftJoystick.getRawButton(BIT)){
-            
+
             if(!active){
-                ballIntake.set(BIT_Spd); //Set speed when cross is pressed
+                ballIntake.set(BIT_Spd); //Set speed when cross is toggled and is inactive
                 active = true;
             } 
 
-            if(active){
+            if(active){ //Toggles off with cross when active
                 ballIntake.set(0);
                 active = false;
             }
