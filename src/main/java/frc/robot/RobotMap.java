@@ -57,9 +57,9 @@ public class RobotMap {
     public static int SRV_PRT = 0; //Servo port
 
     //Tutorial lines
-    public static int TUT = -1; //Tutorial
-    public static int TUT_Val = -2; //Prints tutorial number
-    public static int TUT_Pos = -3; //Increases tutorial number
-    public static int TUT_Neg = -4; //Decreases tutorial number
+    public static int TUT = 100; //Tutorial
+    public static int TUT_Val = 200; //Prints tutorial number
+    public static int TUT_Pos = 300; //Increases tutorial number
+    public static int TUT_Neg = 400; //Decreases tutorial number
 
 }
