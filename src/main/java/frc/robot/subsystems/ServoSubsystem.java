@@ -10,7 +10,6 @@ import static frc.robot.OI.*;
 import edu.wpi.first.wpilibj.Servo;
 //Allows use of servo methods
 
-
 public class ServoSubsystem extends Subsystem {
 
     public Servo servo0;

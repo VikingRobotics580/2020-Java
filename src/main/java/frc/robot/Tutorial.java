@@ -18,7 +18,6 @@ With that out of the way, let's import some objects. */
 package frc.robot; //A variant of this package is necessary for every class in this project
 import static frc.robot.RobotMap.*; //Lets this class communicate with the "RobotMap" class, we'll get into that later
 import static frc.robot.OI.*; //Lets this class communicate with the "OI" class, used for the joystick
-
 /* Importing is very important, as it allows a class to access methods and variables that aren't available in a class by default.
 Methods are a sort of command meant to complete a specific task when given an input. */
 
@@ -44,6 +43,8 @@ public class Tutorial { //This is a class header, every class has one with its o
 
         int example;
         example = 0;
+
+        // add
 
         /* Now that we've got some variables, let's use them in an "if statement". If statements will check for a boolean value, then run 
         the code that follows. */

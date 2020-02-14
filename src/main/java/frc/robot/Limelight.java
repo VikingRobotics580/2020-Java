@@ -1,32 +1,28 @@
-package frc.robot.subsystems;
+package frc.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.*;
 
 import java.util.ArrayList;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
-import edu.wpi.first.networktables.*;
-
-import frc.robot.commands.LimelightCommand;
-
-public class LimelightSubsystem extends Subsystem {
+public class Limelight {
     final double vertIterations = 0;
     NetworkTable table;
-    NetworkTableEntry tx; // Horizontal Offset From Crosshair To Target (LL1: -27 degrees to 27 degrees | LL2: -29.8 to 29.8 degrees)
-    NetworkTableEntry ty; // Vertical Offset From Crosshair To Target (LL1: -20.5 degrees to 20.5 degrees | LL2: -24.85 to 24.85 degrees)
-    NetworkTableEntry tv; // Whether limight has any valid targets (0 or 1)
-    NetworkTableEntry ts; // Skew or rotation (-90 degrees to 0 degrees)
-    NetworkTableEntry tl; // The pipeline’s latency contribution (ms) Add at least 11ms for image capture latency.
-    NetworkTableEntry tvert; // Vertical sidelength of the rough bounding box (0 - 320 pixels)
-    NetworkTableEntry camtran; // Results of a 3D position solution, 6 numbers: Translation (x,y,y) Rotation(pitch,yaw,roll)
-    NetworkTableEntry lightState;
+    NetworkTableEntry tx;
+    NetworkTableEntry ty;
+    NetworkTableEntry tv;
+    NetworkTableEntry ts; 
+    NetworkTableEntry tl;
+    NetworkTableEntry tvert;
+    NetworkTableEntry camtran; 
+    NetworkTableEntry lightState; 
     NetworkTableEntry pipeline; 
     final double mountAngle = 0.0;
     final double targetHeight = 29;
     final double mountHeight = 32.75;
-
-    boolean limelightHasValidTarget = false;
 
     double yAngle = 0;
     double xAngle = 0;
@@ -34,7 +30,7 @@ public class LimelightSubsystem extends Subsystem {
     double currentTvert = 0;
     ArrayList<Double> averageTVert = new ArrayList<Double>();
     
-    public LimelightSubsystem() {
+    public Limelight() {
         table = NetworkTableInstance.getDefault().getTable("limelight");
         tx = table.getEntry("tx");
         ty = table.getEntry("ty");
@@ -160,11 +156,6 @@ public class LimelightSubsystem extends Subsystem {
     
     public void defaultValue(){
         lightState.setValue(4);
-    }
-
-    @Override
-    protected void initDefaultCommand() {
-        setDefaultCommand(new LimelightCommand());
     }
 		
 }
