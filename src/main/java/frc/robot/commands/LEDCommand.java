@@ -6,7 +6,7 @@ import frc.robot.Robot;
 public class LEDCommand extends Command {
 
 	public LEDCommand() {
-		//requires(Robot.drive);
+		requires(Robot.LED);
 	}
 
 	@Override
@@ -15,7 +15,7 @@ public class LEDCommand extends Command {
 
 	@Override
 	protected void execute() {
-		//Robot.drive.Driver();
+		Robot.LED.LEDs();
 	}
 
 	@Override

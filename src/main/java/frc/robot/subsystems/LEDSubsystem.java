@@ -18,4 +18,10 @@ public class LEDSubsystem extends Subsystem {
 
     }
 
+    public void LEDs(){
+
+        
+
+    }
+
 }
