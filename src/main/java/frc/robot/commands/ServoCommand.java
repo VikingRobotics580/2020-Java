@@ -6,7 +6,7 @@ import frc.robot.Robot;
 public class ServoCommand extends Command {
 
 	public ServoCommand() {
-		requires(Robot.servo);
+		//requires(Robot.servo);
 	}
 
 	@Override
@@ -15,7 +15,7 @@ public class ServoCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.servo.rotateArm();
+		//Robot.servo.rotateArm();
 	}
 
 	@Override

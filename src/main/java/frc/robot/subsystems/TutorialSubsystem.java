@@ -34,12 +34,12 @@ public class TutorialSubsystem extends Subsystem { //Change 'TutorialSubsystem' 
         running every few milliseconds. Whatever you want to be happening will be written in here. For this tutorial, I'll apply a lot
         of what I've mentioned in the other files. */
 
-        if(leftJoystick.getRawButton(TUT_Val)) //Gets input from the joystick button 'TUT_Val'. If pressed, the next line runs.
+        if(leftJoystick.getRawButton(1)) //Gets input from the joystick button 'TUT_Val'. If pressed, the next line runs.
             System.out.println(value); //Prints 'value' to the terminal
 
-        if(leftJoystick.getRawButton(TUT_Neg)) //Gets input from the joystick button 'TUT_Neg'. If pressed, the next line runs.
+        if(leftJoystick.getRawButton(1)) //Gets input from the joystick button 'TUT_Neg'. If pressed, the next line runs.
             value += 1; //Increases the value of 'value' by one every time the method runs and the button is pushed.
-        else if(leftJoystick.getRawButton(TUT_Pos)) //Gets input from the joystick button 'TUT_Neg'. If pressed, the next line runs.
+        else if(leftJoystick.getRawButton(1)) //Gets input from the joystick button 'TUT_Neg'. If pressed, the next line runs.
             value -= 1; //Decreases the value of 'value' by one every time the method runs and the button is pushed.
 
     }

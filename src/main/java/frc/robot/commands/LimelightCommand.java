@@ -3,10 +3,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class WinchCommand extends Command {
+public class LimelightCommand extends Command {
 
-	public WinchCommand() {
-		//requires(Robot.winch);
+	public LimelightCommand() {
+		requires(Robot.limelight);
 	}
 
 	@Override
@@ -15,7 +15,7 @@ public class WinchCommand extends Command {
 
 	@Override
 	protected void execute() {
-		//Robot.winch.rotateWinch();
+		Robot.limelight.update();
 	}
 
 	@Override
