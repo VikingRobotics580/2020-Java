@@ -17,7 +17,7 @@ public class BallIntakeSubsystem extends Subsystem {
 
     public BallIntakeSubsystem() { //Constructor
 
-        ballIntake = new WPI_TalonSRX(0); //Identifies port of talon/motor
+        ballIntake = new WPI_TalonSRX(TLN_BIT); //Identifies port of talon/motor
         active = false;
 
     }
