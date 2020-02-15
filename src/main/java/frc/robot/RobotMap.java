@@ -21,10 +21,12 @@ public class RobotMap {
     SRV: Servo
     BIT: Ball Intake
     WNC: Winch
+    BS: Ball Shooter
     Neg: Move in a negative direction
     Pos: Movie in a positive direction
     Pul: Pull with motor
     Stp: Stop motor
+    Shot: Shoot
     Spd: Speed at which something moves
     TLN: Talon
     TUT: Tutorial
@@ -38,11 +40,13 @@ public class RobotMap {
     public static int SRV_Pos = 5; //Make servo move positively
     public static int WNC_Pul = 1; //Extends winch
     public static int WNC_Stp = 4; //Pulls winch
+    public static int BS_Shot = 8; //Shoots balls
 
     //Speeds
     public static double BIT_Spd = 0.2; //Ball intake speed
     public static double SRV_Spd = 3; //Servo Speed
     public static double WNC_Spd = 0.3; //Winch speed
+    public static double BS_Spd = 0.5; //Ball shooter speed
 
     //Talon ports
     public static int TLN_0 = 0; //Talon 0
@@ -52,6 +56,8 @@ public class RobotMap {
     public static int TLN_BIT = 4; //Ball intake motor
     public static int TLN_WNC_0 = 5; //Winch motor 1
     public static int TLN_WNC_1 = 6; //Winch motor 2
+    public static int TLN_BS_0 = 7; //Ball shooter 1
+    public static int TLN_BS_1 = 8; //Ball shooter 2
 
     //Other ports
     public static int SRV_PRT = 0; //Servo port
