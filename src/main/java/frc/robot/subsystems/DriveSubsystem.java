@@ -65,7 +65,7 @@ public class DriveSubsystem extends Subsystem {
         // Constantly update the forw and turn variables with joystick data:
 
         double forw = -1 *leftJoystick.getRawAxis(1); /* pos = forward */
-        double turn = +1 *rightJoystick.getRawAxis(2); /* pos = right */
+        double turn = +1 *leftJoystick.getRawAxis(2); /* pos = right */
         boolean btn1 =leftJoystick.getRawButton(1); /* if button is down, print joystick values */
 
         // Margin of error for joystick sensitivity = 10%
