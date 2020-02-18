@@ -38,6 +38,11 @@ public class BallShooterSubsystem extends Subsystem {
             ballShooter0.set(BS_Spd); //Moves when button is pushed
             ballShooter1.set(BS_Spd);
 
+        } else if(leftJoystick.getRawButton(BS_Slow)){
+
+            ballShooter0.set(BS_Slw); //Moves slower when button is pushed
+            ballShooter1.set(BS_Slw);
+
         } else {
 
             ballShooter0.set(0); //Sets speed to 0 if no button is pressed.

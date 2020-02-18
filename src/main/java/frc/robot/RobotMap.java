@@ -40,6 +40,7 @@ public class RobotMap {
     public static int SRV_Pos = 5; //Make servo move positively
     public static int WNC_Pul = 1; //Extends winch
     public static int WNC_Stp = 4; //Pulls winch
+    public static int BS_Slow = 7; //Shoots balls
     public static int BS_Shot = 8; //Shoots balls
 
     //Speeds
@@ -47,6 +48,7 @@ public class RobotMap {
     public static double SRV_Spd = 3; //Servo Speed
     public static double WNC_Spd = 0.3; //Winch speed
     public static double BS_Spd = 1; //Ball shooter speed
+    public static double BS_Slw = 0.1; //Ball shooter slower speed
 
     //Talon ports
     public static int TLN_0 = 0; //Talon 0
