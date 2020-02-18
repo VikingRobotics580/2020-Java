@@ -14,6 +14,7 @@ public class BallShooterSubsystem extends Subsystem {
 
     WPI_TalonSRX ballShooter0;
     WPI_TalonSRX ballShooter1;
+    //Instantiates ball shooters
 
     public BallShooterSubsystem() { //Constructor
 
