@@ -33,7 +33,7 @@ public class Robot extends TimedRobot {
   public static final BallIntakeSubsystem intake = new BallIntakeSubsystem();
   public static final BallShooterSubsystem shooter = new BallShooterSubsystem();
   public static final WinchSubsystem winch = new WinchSubsystem();
-  public static final LEDSubsystem LED = new LEDSubsystem();
+  public static final ArduinoSubsystem LED = new ArduinoSubsystem();
   public static final ServoSubsystem servo = new ServoSubsystem();
   public static final LimelightSubsystem limelight = new LimelightSubsystem();
   public static final TutorialSubsystem tutorial = new TutorialSubsystem();

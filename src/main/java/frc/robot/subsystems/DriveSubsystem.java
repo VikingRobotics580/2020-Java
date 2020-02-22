@@ -120,15 +120,26 @@ public class DriveSubsystem extends Subsystem {
         Timer.delay(2.0);
         _diffDrive.arcadeDrive(0, 0);
 
-        autonomousSeeking();
+        if (Robot.limelight.getTV() != 1) {
+            autonomousSeeking();
+        }
 
     }
 
     public void autonomousSeeking() {
-        if (Robot.limelight.getTV() != 1) {
-            _diffDrive.arcadeDrive(0.1, 0.1);
-        } else {
-            goto180();
+        if (!leftJoystick.getRawButtonPressed(2)) {
+            if (Robot.limelight.getTV() != 1) {
+                _diffDrive.arcadeDrive(0.1, 0.1);
+            }
+        }
+    }
+
+    public void ranging() {
+        if (Robot.limelight.calcXDist() > 125) {
+            _diffDrive.arcadeDrive(-0.1, 0);
+        }
+        if (Robot.limelight.calcXDist() < 115) {
+            _diffDrive.arcadeDrive(0.1, 0);
         }
     }
 
