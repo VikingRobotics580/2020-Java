@@ -2,10 +2,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import static frc.robot.OI.*;
 
-public class LEDCommand extends Command {
+public class ArduinoCommand extends Command {
 
-	public LEDCommand() {
+	public ArduinoCommand() {
 		requires(Robot.LED);
 	}
 
@@ -15,8 +16,8 @@ public class LEDCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.LED.LEDs();
-	}
+        //Robot.m_i2c.getData();
+    }
 
 	@Override
 	protected boolean isFinished() {
