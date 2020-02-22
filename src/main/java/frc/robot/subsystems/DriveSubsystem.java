@@ -15,9 +15,11 @@ import com.ctre.phoenix.motorcontrol.Faults;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.Timer;
-
+import frc.robot.Robot;
 import frc.robot.commands.DriveCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -39,6 +41,8 @@ public class DriveSubsystem extends Subsystem {
     Faults _lFaults;
     Faults _rFaults;
 
+    ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+
     // This instantiates, or sets up all of the variables. For example, it sets the right front wheel to the 2nd talon.
     public DriveSubsystem() {
 
@@ -52,6 +56,8 @@ public class DriveSubsystem extends Subsystem {
         _rFaults = new Faults();
 
         SmartDashboard.putData(_diffDrive);
+
+        SmartDashboard.putData(gyro);
 
     }
 
@@ -114,6 +120,26 @@ public class DriveSubsystem extends Subsystem {
         Timer.delay(2.0);
         _diffDrive.arcadeDrive(0, 0);
 
+        autonomousSeeking();
+
+    }
+
+    public void autonomousSeeking() {
+        if (Robot.limelight.getTV() != 1) {
+            _diffDrive.arcadeDrive(0.1, 0.1);
+        } else {
+            goto180();
+        }
+    }
+
+    public void goto180() {
+        if (gyro.isConnected()) {
+            while ((!(gyro.getAngle() > 179 && gyro.getAngle() < 181)) && !leftJoystick.getRawButtonPressed(2)) {
+                _diffDrive.arcadeDrive(0.1, -0.1);
+            }
+        } else {
+            System.out.println("Gyro not connected!");
+        }
     }
 
     // This initializes everything in the subsystem, sets everything to "default":

@@ -19,8 +19,6 @@ import static frc.robot.OI.*;
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-
 import edu.wpi.first.wpilibj.smartdashboard.*;
 
 /**
@@ -40,14 +38,10 @@ public class Robot extends TimedRobot {
   public static final LimelightSubsystem limelight = new LimelightSubsystem();
   public static final TutorialSubsystem tutorial = new TutorialSubsystem();
 
-  ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-
   @Override
   public void robotInit() {
-    SmartDashboard.putData(gyro);
     //Logger.configureLoggingAndConfig(this, false);
   }
-
 
   public void periodic() {
     Scheduler.getInstance().run();
@@ -55,7 +49,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    DriveSubsystem.autonomous();
+    drive.autonomous();
   }
 
   @Override

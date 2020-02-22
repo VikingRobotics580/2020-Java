@@ -23,9 +23,9 @@ public class LimelightSubsystem extends Subsystem {
     NetworkTableEntry camtran; // Results of a 3D position solution, 6 numbers: Translation (x,y,y) Rotation(pitch,yaw,roll)
     NetworkTableEntry lightState;
     NetworkTableEntry pipeline; 
-    final double mountAngle = 15;
-    final double targetHeight = 81.5;
-    final double mountHeight = 33.5;
+    final double mountAngle = 19;
+    final double targetHeight = 89.75;
+    final double mountHeight = 35;
 
     boolean limelightHasValidTarget = false;
 
@@ -103,8 +103,8 @@ public class LimelightSubsystem extends Subsystem {
     /**
      * @return y distance
      */
-    public double calcDist() {
-        double distance = (targetHeight - mountHeight)/Math.tan(Math.toRadians(tx()));
+    public double calcYDist() {
+        double distance = (targetHeight - mountHeight)/Math.tan(Math.toRadians(ty()));
         return distance;
     }
 
@@ -112,7 +112,7 @@ public class LimelightSubsystem extends Subsystem {
      * @return x distance
      */
     public double calcXDist(){
-        double distance = calcDist()/Math.tan(Math.toRadians(15));
+        double distance = (targetHeight - mountHeight)/Math.tan(Math.toRadians(ty() + mountAngle));
         return distance;
     }
 
@@ -129,6 +129,10 @@ public class LimelightSubsystem extends Subsystem {
      */
     public double toFeet(double inches){
         return inches/12;
+    }
+
+    public double getTV() {
+        return tv.getDouble(0.0);
     }
 
     public void updateTVert(double current){
