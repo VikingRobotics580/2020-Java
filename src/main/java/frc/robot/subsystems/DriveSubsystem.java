@@ -16,6 +16,7 @@ import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.Timer;
 
 import frc.robot.commands.DriveCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -105,6 +106,14 @@ public class DriveSubsystem extends Subsystem {
         if (btn1) {
             System.out.println(work);
         }
+    }
+
+    public void autonomous(){
+
+        _diffDrive.arcadeDrive(5, 0);
+        Timer.delay(2.0);
+        _diffDrive.arcadeDrive(0, 0);
+
     }
 
     // This initializes everything in the subsystem, sets everything to "default":
