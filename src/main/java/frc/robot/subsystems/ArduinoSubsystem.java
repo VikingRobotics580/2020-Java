@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.smartdashboard.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.ArduinoCommand;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
+
 public class ArduinoSubsystem extends Subsystem {
 
 	private static I2C Wire = new I2C(Port.kOnboard, 4);//uses the i2c port on the RoboRIO													//uses address 4, must match arduino
@@ -20,14 +23,30 @@ public class ArduinoSubsystem extends Subsystem {
 
 	//String status = "";
 
+	public Alliance getAlliance() {
+		return DriverStation.getInstance().getAlliance();
+	}
+
 	public void write(String input){//writes to the arduino 
-			char[] CharArray = input.toCharArray();//creates a char array from the input string
-			byte[] WriteData = new byte[CharArray.length];//creates a byte array from the char array
-			for (int i = 0; i < CharArray.length; i++) {//writes each byte to the arduino
-				WriteData[i] = (byte)CharArray[i];//adds the char elements to the byte array 
-			}
-			Wire.transaction(WriteData, WriteData.length, null, 0);//sends each byte to arduino
-			
+		
+		String LEDColor = "none";
+
+		if (getAlliance() == Alliance.Red) {
+			LEDColor = "red";
+		}
+		if (getAlliance() == Alliance.Blue) {
+			LEDColor = "blue";
+		}
+		if (getAlliance() == Alliance.Invalid) {
+			LEDColor = "none";
+		}
+
+		char[] CharArray = LEDColor.toCharArray();//creates a char array from the input string
+		byte[] WriteData = new byte[CharArray.length];//creates a byte array from the char array
+		for (int i = 0; i < CharArray.length; i++) {//writes each byte to the arduino
+			WriteData[i] = (byte)CharArray[i];//adds the char elements to the byte array 
+		}
+		Wire.transaction(WriteData, WriteData.length, null, 0);//sends each byte to arduino
 	}
 
 	public Arduino getArduino(){//reads the data from arduino and saves it
@@ -53,7 +72,7 @@ public class ArduinoSubsystem extends Subsystem {
 		Arduino receive = getArduino();
 		//System.out.println(receive.distance);
 		if (OI.leftJoystick.getRawButtonPressed(12)) {
-			System.out.println("Pixy:" + receive.x + " | " + receive.y + " | " + receive.area);
+			System.out.println("Test:" + receive.x + " | " + receive.y + " | " + receive.area);
 			System.out.println("Distance: " + receive.distance);
 		}
 	}
