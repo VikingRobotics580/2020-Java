@@ -46,10 +46,10 @@ public class DriveSubsystem extends Subsystem {
     // This instantiates, or sets up all of the variables. For example, it sets the right front wheel to the 2nd talon.
     public DriveSubsystem() {
 
-        _rFront = new WPI_TalonSRX(TLN_2);
-        _rBack = new WPI_TalonSRX(TLN_3);
-        _lFront = new WPI_TalonSRX(TLN_0);
-        _lBack = new WPI_TalonSRX(TLN_1);
+        _rFront = new WPI_TalonSRX(1);
+        _rBack = new WPI_TalonSRX(2);
+        _lFront = new WPI_TalonSRX(3);
+        _lBack = new WPI_TalonSRX(4);
 
         _diffDrive = new DifferentialDrive(_lFront, _rFront);
         _lFaults = new Faults();
@@ -84,7 +84,7 @@ public class DriveSubsystem extends Subsystem {
         }
 
         // DRIVE THE ROBOT:
-        _diffDrive.arcadeDrive(forw, turn);
+        _diffDrive.arcadeDrive(forw/1.5, turn);
 
         // Data printed to make sure joystick forward is positive and joystick turn is positive for right
         work += " JF:" + forw + " JT:" + turn;

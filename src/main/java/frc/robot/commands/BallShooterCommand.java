@@ -15,7 +15,7 @@ public class BallShooterCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.shooter.shootBalls();
+		//Robot.shooter.shootBalls();
 	}
 
 	@Override

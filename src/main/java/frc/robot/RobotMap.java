@@ -46,7 +46,7 @@ public class RobotMap {
     //Speeds
     public static double BIT_Spd = 0.2; //Ball intake speed
     public static double SRV_Spd = 3; //Servo Speed
-    public static double WNC_Spd = 0.3; //Winch speed
+    public static double WNC_Spd = 0.7; //Winch speed
     public static double BS_Spd = 1; //Ball shooter speed
     public static double BS_Slw = 0.1; //Ball shooter slower speed
 
@@ -63,6 +63,8 @@ public class RobotMap {
 
     //Other ports
     public static int SRV_PRT = 0; //Servo port
+
+    public static String yes = "1";
 
 }
 

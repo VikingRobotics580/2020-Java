@@ -18,8 +18,8 @@ public class WinchSubsystem extends Subsystem {
 
     public WinchSubsystem() { //Constructor
  
-        winchLeft = new WPI_TalonSRX(TLN_WNC_0); //Defines which port the talons connect to
-        winchRight = new WPI_TalonSRX(TLN_WNC_1);
+        winchLeft = new WPI_TalonSRX(5); //Defines which port the talons connect to
+        winchRight = new WPI_TalonSRX(6);
 
     }
 

@@ -2,6 +2,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
+
 import static frc.robot.OI.*;
 
 public class ArduinoCommand extends Command {
@@ -16,7 +18,7 @@ public class ArduinoCommand extends Command {
 
 	@Override
 	protected void execute() {
-        //Robot.m_i2c.getData();
+		Robot.LED.write(RobotMap.yes);
     }
 
 	@Override
