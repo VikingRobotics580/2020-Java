@@ -116,18 +116,18 @@ public class DriveSubsystem extends Subsystem {
 
     public void autonomous(){
 
-        _diffDrive.arcadeDrive(5, 0);
-        Timer.delay(2.0);
-        _diffDrive.arcadeDrive(0, 0);
+        _diffDrive.arcadeDrive(5, 0); //Drive forward at speed 5 and 0 rotation
+        Timer.delay(2.0); //Continue for 2 seconds
+        _diffDrive.arcadeDrive(0, 0); //Stop driving
 
-        if (Robot.limelight.getTV() != 1) {
+        if (Robot.limelight.getTV() != 1) { //Check to see if target is detected
             autonomousSeeking();
         }
 
     }
 
-    public void autonomousSeeking() {
-        if (!leftJoystick.getRawButtonPressed(EMG_Stp)) {
+    public void autonomousSeeking() { //Attempts to find target
+        if (!leftJoystick.getRawButtonPressed(EMG_Stp)) { //Checks autonomous kill button
             if (Robot.limelight.getTV() != 1) {
                 _diffDrive.arcadeDrive(0.1, 0.1);
             }

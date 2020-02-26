@@ -66,7 +66,8 @@ public class RobotMap {
     public static int TLN_BS_1 = 5; //Ball shooter 2
 
     //Other ports
-    public static int SRV_PRT = 0; //Servo port
+    public static int SRV_PRT_0 = 0; //Servo port 1
+    public static int SRV_PRT_1 = 0; //Servo port 2
 
 }
 
