@@ -12,19 +12,22 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class BallIntakeSubsystem extends Subsystem {
 
-    WPI_TalonSRX ballIntake;
+    WPI_TalonSRX ballIntake_0;
+    WPI_TalonSRX ballIntake_1;
     boolean active;
 
     public BallIntakeSubsystem() { //Constructor
 
-        ballIntake = new WPI_TalonSRX(TLN_BIT); //Identifies port of talon/motor
+        ballIntake_0 = new WPI_TalonSRX(TLN_BIT_0); //Identifies port of talon/motor
+        ballIntake_1 = new WPI_TalonSRX(TLN_BIT_1); //Identifies port of talon/motor
         active = false;
 
     }
 
     public void initDefaultCommand() { //Runs on startup
 
-        ballIntake.set(0); //Sets speed to 0 at start
+        ballIntake_0.set(0); //Sets speed to 0 at start
+        ballIntake_1.set(0); //Sets speed to 0 at start
         setDefaultCommand(new BallIntakeCommand()); //Variant is REQUIRED for subsystems
 
     }
@@ -34,12 +37,14 @@ public class BallIntakeSubsystem extends Subsystem {
         if(leftJoystick.getRawButton(BIT)){
 
             if(!active){
-                ballIntake.set(BIT_Spd); //Set speed when cross is toggled and is inactive
+                ballIntake_0.set(BIT_Spd); //Set speed when cross is toggled and is inactive
+                ballIntake_1.set(-BIT_Spd); //Set speed when cross is toggled and is inactive
                 active = true;
             } 
 
             if(active){ //Toggles off with cross when active
-                ballIntake.set(0);
+                ballIntake_0.set(0);
+                ballIntake_1.set(0);
                 active = false;
             }
 
