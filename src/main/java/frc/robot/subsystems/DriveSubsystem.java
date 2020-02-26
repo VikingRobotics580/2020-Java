@@ -127,7 +127,7 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void autonomousSeeking() {
-        if (!leftJoystick.getRawButtonPressed(2)) {
+        if (!leftJoystick.getRawButtonPressed(EMG_Stp)) {
             if (Robot.limelight.getTV() != 1) {
                 _diffDrive.arcadeDrive(0.1, 0.1);
             }
@@ -136,10 +136,10 @@ public class DriveSubsystem extends Subsystem {
 
     public void ranging() {
         if (Robot.limelight.calcXDist() > 125) {
-            _diffDrive.arcadeDrive(-0.1, 0);
+            _diffDrive.arcadeDrive(0, -0.1);
         }
         if (Robot.limelight.calcXDist() < 115) {
-            _diffDrive.arcadeDrive(0.1, 0);
+            _diffDrive.arcadeDrive(0, 0.1);
         }
     }
 

@@ -31,6 +31,7 @@ public class RobotMap {
     TLN: Talon
     TUT: Tutorial
     Val: Value
+    EMG: Emergency
     PRT: Port
     */
 
@@ -42,6 +43,8 @@ public class RobotMap {
     public static int WNC_Stp = 4; //Pulls winch
     public static int BS_Slow = 7; //Shoots balls
     public static int BS_Shot = 8; //Shoots balls
+    public static int EMG_Stp = 2; //Shoots balls
+
 
     //Speeds
     public static double BIT_Spd = 0.2; //Ball intake speed
@@ -55,7 +58,8 @@ public class RobotMap {
     public static int TLN_1 = 1; //Talon 1
     public static int TLN_2 = 2; //Talon 2
     public static int TLN_3 = 3; //Talon 3
-    public static int TLN_BIT = 8; //Ball intake motor
+    public static int TLN_BIT_0 = 8; //Ball intake motor 1
+    public static int TLN_BIT_1 = 9; //Ball intake motor 2
     public static int TLN_WNC_0 = 6; //Winch motor 1
     public static int TLN_WNC_1 = 7; //Winch motor 2
     public static int TLN_BS_0 = 4; //Ball shooter 1
