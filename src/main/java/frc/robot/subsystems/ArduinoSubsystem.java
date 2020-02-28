@@ -24,9 +24,6 @@ public class ArduinoSubsystem extends Subsystem {
 
 	byte[] data = new byte[1];
 
-
-	//String status = "";
-
 	public Alliance getAlliance() {
 		return DriverStation.getInstance().getAlliance();
 	}
@@ -50,8 +47,8 @@ public class ArduinoSubsystem extends Subsystem {
 		for (int i = 0; i < CharArray.length; i++) {//writes each byte to the arduino
 			WriteData[i] = (byte)CharArray[i];//adds the char elements to the byte array 
 		}
-		//Wire.writeBulk(WriteData, WriteData.length);
-		Wire.transaction(WriteData, WriteData.length, null, 0);
+		Wire.writeBulk(WriteData, WriteData.length);
+		//Wire.transaction(WriteData, WriteData.length, null, 0);
 	}
 
 	public Arduino getArduino(){//reads the data from arduino and saves it

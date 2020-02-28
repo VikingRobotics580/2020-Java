@@ -11,6 +11,8 @@ package frc.robot.subsystems;
 import static frc.robot.OI.*;
 import static frc.robot.RobotMap.*;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+
 import com.ctre.phoenix.motorcontrol.Faults;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -35,6 +37,15 @@ public class DriveSubsystem extends Subsystem {
     WPI_TalonSRX _rBack;
     WPI_TalonSRX _lFront;
     WPI_TalonSRX _lBack;
+
+    double kHoldDistance = 12.0;
+    double kValueToInches = 0.125;
+
+    final double kP = 0.05;
+
+    final int kUltrasonicPort = 0;
+
+    AnalogInput m_ultrasonic = new AnalogInput(kUltrasonicPort);
 
     DifferentialDrive _diffDrive;
 
@@ -154,6 +165,15 @@ public class DriveSubsystem extends Subsystem {
         if (Robot.limelight.tx() < 1 && Robot.limelight.tx() > -1) {
             Robot.shooter.shootBalls();
         }
+    }
+
+    public void update_ultrasonic() {
+        double currentDistance = m_ultrasonic.getValue() * kValueToInches;
+        SmartDashboard.putNumber("Ultrasonic", currentDistance);
+        //convert distance error to a motor speed
+        double currentSpeed = (kHoldDistance - currentDistance) * kP;
+        SmartDashboard.putNumber("Current Speed", currentSpeed);
+        //_diffDrive.arcadeDrive(currentSpeed, 0);
     }
 
     public void update_limelight_tracking() {

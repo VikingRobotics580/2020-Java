@@ -33,12 +33,12 @@ public class BallShooterSubsystem extends Subsystem {
 
     public void shootBalls(){ //Runs intermitantly after start
 
-        if(leftJoystick.getRawButton(7)){
+        if(controller.getRawButton(7)){
 
             ballShooter0.set(-0.7); //Moves when button is pushed
             ballShooter1.set(-0.7);
 
-        } else if (leftJoystick.getRawButton(8)){
+        } else if (controller.getRawButton(8)){
 
             ballShooter0.set(-0.1); //Moves slower when button is pushed
             ballShooter1.set(-0.1);
