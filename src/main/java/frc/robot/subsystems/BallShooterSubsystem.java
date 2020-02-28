@@ -18,8 +18,8 @@ public class BallShooterSubsystem extends Subsystem {
 
     public BallShooterSubsystem() { //Constructor
 
-        ballShooter0 = new WPI_TalonSRX(TLN_BS_0); //Identifies port of talon/motor
-        ballShooter1 = new WPI_TalonSRX(TLN_BS_0); //Identifies port of talon/motor
+        ballShooter0 = new WPI_TalonSRX(5); //Identifies port of talon/motor
+        ballShooter1 = new WPI_TalonSRX(6); //Identifies port of talon/motor
 
     }
 
@@ -33,15 +33,15 @@ public class BallShooterSubsystem extends Subsystem {
 
     public void shootBalls(){ //Runs intermitantly after start
 
-        if(leftJoystick.getRawButton(BS_Shot)){
+        if(leftJoystick.getRawButton(7)){
 
-            ballShooter0.set(BS_Spd); //Moves when button is pushed
-            ballShooter1.set(BS_Spd);
+            ballShooter0.set(-0.7); //Moves when button is pushed
+            ballShooter1.set(-0.7);
 
-        } else if(leftJoystick.getRawButton(BS_Slow)){
+        } else if (leftJoystick.getRawButton(8)){
 
-            ballShooter0.set(BS_Slw); //Moves slower when button is pushed
-            ballShooter1.set(BS_Slw);
+            ballShooter0.set(-0.1); //Moves slower when button is pushed
+            ballShooter1.set(-0.1);
 
         } else {
 

@@ -43,6 +43,14 @@ public class DriveSubsystem extends Subsystem {
 
     ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
+    private boolean m_LimelightHasValidTarget = false;
+    private double m_LimelightDriveCommand = 0.0;
+    private double m_LimelightSteerCommand = 0.0;
+
+    private boolean autonomous;
+
+    private boolean firstAuto = true;
+
     // This instantiates, or sets up all of the variables. For example, it sets the right front wheel to the 2nd talon.
     public DriveSubsystem() {
 
@@ -116,6 +124,18 @@ public class DriveSubsystem extends Subsystem {
 
     public void autonomous(){
 
+        if (firstAuto) {
+            _diffDrive.arcadeDrive(0.1, 0);
+            Timer.delay(3);
+            goto90();
+            _diffDrive.arcadeDrive(0.1, 0);
+            Timer.delay(3);
+            goto180();
+        }
+        firstAuto = false;
+
+        update_limelight_tracking();
+
         _diffDrive.arcadeDrive(5, 0); //Drive forward at speed 5 and 0 rotation
         Timer.delay(2.0); //Continue for 2 seconds
         _diffDrive.arcadeDrive(0, 0); //Stop driving
@@ -123,14 +143,50 @@ public class DriveSubsystem extends Subsystem {
         if (Robot.limelight.getTV() != 1) { //Check to see if target is detected
             autonomousSeeking();
         }
+        if (autonomous) {
+            if (m_LimelightHasValidTarget) {
+                _diffDrive.arcadeDrive(m_LimelightDriveCommand, m_LimelightSteerCommand);
+            } else {
+                _diffDrive.arcadeDrive(0.0, 0.0);
+            }
+        }
+           
+        if (Robot.limelight.tx() < 1 && Robot.limelight.tx() > -1) {
+            Robot.shooter.shootBalls();
+        }
+    }
+
+    public void update_limelight_tracking() {
+        final double STEER_K = 0.03;
+        final double DRIVE_K = 0.26;
+        final double DESIRED_TARGET_AREA = 13.0;
+        final double MAX_DRIVE = 0.7;
+
+        if (Robot.limelight.getTV() < 1.0) {
+            m_LimelightHasValidTarget = false;
+            m_LimelightDriveCommand = 0.0;
+            m_LimelightSteerCommand = 0.0;
+            return;
+        }
+
+        m_LimelightHasValidTarget = true;
+
+        double steer_cmd = Robot.limelight.tx() * STEER_K;
+        m_LimelightSteerCommand = steer_cmd;
+
+        double drive_cmd = (DESIRED_TARGET_AREA - Robot.limelight.getTA() * DRIVE_K);
+
+        if (drive_cmd > MAX_DRIVE) {
+            drive_cmd = MAX_DRIVE;
+        }
+
+        m_LimelightDriveCommand = drive_cmd;
 
     }
 
     public void autonomousSeeking() { //Attempts to find target
         if (!leftJoystick.getRawButtonPressed(EMG_Stp)) { //Checks autonomous kill button
-            if (Robot.limelight.getTV() != 1) {
-                _diffDrive.arcadeDrive(0.1, 0.1);
-            }
+            _diffDrive.arcadeDrive(0.1, 0.1);
         }
     }
 
@@ -146,11 +202,23 @@ public class DriveSubsystem extends Subsystem {
     public void goto180() {
         if (gyro.isConnected()) {
             while ((!(gyro.getAngle() > 179 && gyro.getAngle() < 181)) && !leftJoystick.getRawButtonPressed(2)) {
-                _diffDrive.arcadeDrive(0.1, -0.1);
+                _diffDrive.arcadeDrive(0, -0.1);
             }
         } else {
             System.out.println("Gyro not connected!");
         }
+    }
+
+    public void goto90() {
+        if (gyro.isConnected()) {
+            while ((!(gyro.getAngle() > 89 && gyro.getAngle() < 91)) && !leftJoystick.getRawButtonPressed(2)) {
+                _diffDrive.arcadeDrive(0, -0.1);
+            }
+        }
+    }
+
+    public void resetGyro() {
+        gyro.reset();
     }
 
     // This initializes everything in the subsystem, sets everything to "default":

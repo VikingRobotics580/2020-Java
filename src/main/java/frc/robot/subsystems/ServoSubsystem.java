@@ -27,7 +27,7 @@ public class ServoSubsystem extends Subsystem {
     public void initDefaultCommand() { //Runs on startup
 
         servo_0.setAngle(defaultAngle); //Moves servo to default position
-        servo_1.setAngle(180 + defaultAngle); //Moves servo to default position
+        servo_1.setAngle(180-servo_0.getAngle()); //Moves servo to default position
         setDefaultCommand(new ServoCommand()); //Variant is REQUIRED for subsystems
 
     }
@@ -35,13 +35,14 @@ public class ServoSubsystem extends Subsystem {
     public void rotateArm() {
 
         if(leftJoystick.getRawButton(SRV_Pos)){
-            if(servo_0.getAngle() < defaultAngle + 90)
+            if(servo_0.getAngle() < defaultAngle + 90) {
                 servo_0.setAngle(servo_0.getAngle() + SRV_Spd);
                 servo_1.setAngle(servo_1.getAngle() - SRV_Spd);
+            }
         }
 
         if(leftJoystick.getRawButton(SRV_Neg)){
-            if(servo_0.getAngle() > defaultAngle + 3){
+            if(servo_0.getAngle() > defaultAngle + 3) {
                 servo_0.setAngle(servo_0.getAngle() - SRV_Spd);
                 servo_1.setAngle(servo_1.getAngle() + SRV_Spd);
             }

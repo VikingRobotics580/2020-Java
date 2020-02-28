@@ -37,7 +37,7 @@ public class RobotMap {
 
     //Joystick
     public static int SRV_Neg = 6; //Make servo move negatively
-    public static int BIT = 2; //Starts intake
+    public static int BIT = 4; //Starts intake
     public static int SRV_Pos = 5; //Make servo move positively
     public static int WNC_Pul = 1; //Extends winch
     public static int WNC_Stp = 4; //Pulls winch
@@ -47,10 +47,10 @@ public class RobotMap {
 
 
     //Speeds
-    public static double BIT_Spd = 0.2; //Ball intake speed
-    public static double SRV_Spd = 3; //Servo Speed
+    public static double BIT_Spd = 0.6; //Ball intake speed
+    public static double SRV_Spd = 6; //Servo Speed
     public static double WNC_Spd = 0.7; //Winch speed
-    public static double BS_Spd = 1; //Ball shooter speed
+    public static double BS_Spd = 0.2; //Ball shooter speed
     public static double BS_Slw = 0.1; //Ball shooter slower speed
 
     //Talon ports
@@ -67,7 +67,7 @@ public class RobotMap {
 
     //Other ports
     public static int SRV_PRT_0 = 0; //Servo port 1
-    public static int SRV_PRT_1 = 0; //Servo port 2
+    public static int SRV_PRT_1 = 1; //Servo port 2
 
     public static String yes = "1";
 

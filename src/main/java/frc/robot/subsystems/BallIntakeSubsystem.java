@@ -18,8 +18,8 @@ public class BallIntakeSubsystem extends Subsystem {
 
     public BallIntakeSubsystem() { //Constructor
 
-        ballIntake_0 = new WPI_TalonSRX(TLN_BIT_0); //Identifies port of talon/motor
-        ballIntake_1 = new WPI_TalonSRX(TLN_BIT_1); //Identifies port of talon/motor
+        ballIntake_0 = new WPI_TalonSRX(7); //Identifies port of talon/motor
+        ballIntake_1 = new WPI_TalonSRX(8); //Identifies port of talon/motor
         active = false;
 
     }
@@ -34,20 +34,15 @@ public class BallIntakeSubsystem extends Subsystem {
 
     public void rotateIntake(){ //Runs intermitantly after start
 
-        if(leftJoystick.getRawButton(BIT)){
+        if(leftJoystick.getRawButton(3)){
 
-            if(!active){
-                ballIntake_0.set(BIT_Spd); //Set speed when cross is toggled and is inactive
-                ballIntake_1.set(-BIT_Spd); //Set speed when cross is toggled and is inactive
-                active = true;
-            } 
-
-            if(active){ //Toggles off with cross when active
+                ballIntake_0.set(-1); //Set speed when cross is toggled and is inactive
+                ballIntake_1.set(+1); //Set speed when cross is toggled and is inactive
+        }
+        else { //Toggles off with cross when active
                 ballIntake_0.set(0);
                 ballIntake_1.set(0);
                 active = false;
-            }
-
         }
 
     }

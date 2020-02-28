@@ -18,8 +18,8 @@ public class WinchSubsystem extends Subsystem {
 
     public WinchSubsystem() { //Constructor
  
-        winchLeft = new WPI_TalonSRX(5); //Defines which port the talons connect to
-        winchRight = new WPI_TalonSRX(6);
+        winchLeft = new WPI_TalonSRX(0); //Defines which port the talons connect to
+        winchRight = new WPI_TalonSRX(9);
 
     }
 
@@ -33,12 +33,12 @@ public class WinchSubsystem extends Subsystem {
 
     public void rotateWinch() {
 
-        if(leftJoystick.getRawButton(WNC_Pul)){ //Roate one way with button 7
+        if(leftJoystick.getRawButton(1)){ //Roate one way with button 7
             winchLeft.set(WNC_Spd);
-            winchRight.set(WNC_Spd);
-        } else if(leftJoystick.getRawButton(WNC_Stp)){ //And the other with 8
-            winchLeft.set(-WNC_Spd);
             winchRight.set(-WNC_Spd);
+        } else if(leftJoystick.getRawButton(4)){ //And the other with 8
+            winchLeft.set(-WNC_Spd);
+            winchRight.set(WNC_Spd);
         } else { //And stop with no buttons
             winchLeft.set(0);
             winchRight.set(0);

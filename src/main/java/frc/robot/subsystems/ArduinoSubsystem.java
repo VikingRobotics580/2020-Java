@@ -1,7 +1,8 @@
 // VikingRobotics 2019 FRC Robotics
-// Programming Team: Bhada Yun, Finn Cawley, Kate Hirshberg
+// Programming Team: Bhada Yun, Finn Cawley, David Ju, Kate Hirshberg
 // I2C Receiver for Arduino
 // Lead: Bhada Yun 
+// Arduino helper: David Ju
 
 package frc.robot.subsystems;
 
@@ -21,24 +22,27 @@ public class ArduinoSubsystem extends Subsystem {
 	private static I2C Wire = new I2C(Port.kOnboard, 4);//uses the i2c port on the RoboRIO													//uses address 4, must match arduino
 	private static final int MAX_BYTES = 32;
 
+	byte[] data = new byte[1];
+
+
 	//String status = "";
 
 	public Alliance getAlliance() {
 		return DriverStation.getInstance().getAlliance();
 	}
 
-	public void write(String input){//writes to the arduino 
+	public void write() { //writes to the arduino 
 		
-		String LEDColor = "none";
+		String LEDColor = "0";
 
 		if (getAlliance() == Alliance.Red) {
-			LEDColor = "red";
+			LEDColor = "1";
 		}
 		if (getAlliance() == Alliance.Blue) {
-			LEDColor = "blue";
+			LEDColor = "2";
 		}
 		if (getAlliance() == Alliance.Invalid) {
-			LEDColor = "none";
+			LEDColor = "4";
 		}
 
 		char[] CharArray = LEDColor.toCharArray();//creates a char array from the input string
@@ -46,24 +50,15 @@ public class ArduinoSubsystem extends Subsystem {
 		for (int i = 0; i < CharArray.length; i++) {//writes each byte to the arduino
 			WriteData[i] = (byte)CharArray[i];//adds the char elements to the byte array 
 		}
-		Wire.transaction(WriteData, WriteData.length, null, 0);//sends each byte to arduino
+		//Wire.writeBulk(WriteData, WriteData.length);
+		Wire.transaction(WriteData, WriteData.length, null, 0);
 	}
 
 	public Arduino getArduino(){//reads the data from arduino and saves it
-		String info[] = read().split("\\|");//everytime a "|" is used it splits the data,
+	 	String info[] = read().split("\\|");//everytime a "|" is used it splits the data,
 		Arduino arduino = new Arduino();  //creates a new packet to hold the data 
-		if(info[0].equals("none") || info[0].equals("")){//checks to make sure there is data 
-			arduino.x = -1;//the x val will never be -1 so we can text later in code to make sure 
-			arduino.y = -1;
-			arduino.area = -1;
-			if (info.length >= 2) {
-				arduino.distance = Double.parseDouble(info[1]);
-			}
-		}else if(info.length >= 3){//if there is an x, y, and area value the length equals 3
-			arduino.x = Double.parseDouble(info[0]);//set x
-			arduino.y = Double.parseDouble(info[1]);//set y
-			arduino.area = Double.parseDouble(info[2]);//set area
-			arduino.distance = Double.parseDouble(info[3]);
+		if(!(info[0].equals("none") || info[0].equals(""))){//checks to make sure there is data 
+			arduino.distance = Double.parseDouble(info[0]);
 		}
 		return arduino;
 	}
@@ -71,10 +66,8 @@ public class ArduinoSubsystem extends Subsystem {
 	public void getData() {
 		Arduino receive = getArduino();
 		//System.out.println(receive.distance);
-		if (OI.leftJoystick.getRawButtonPressed(12)) {
-			System.out.println("Test:" + receive.x + " | " + receive.y + " | " + receive.area);
-			System.out.println("Distance: " + receive.distance);
-		}
+		System.out.println("Distance: " + receive.distance);
+		SmartDashboard.putNumber("Ultrasonic Distance:", receive.distance);
 	}
 
 	private String read(){//function to read the data from arduino

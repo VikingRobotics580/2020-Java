@@ -19,6 +19,7 @@ public class LimelightSubsystem extends Subsystem {
     NetworkTableEntry tv; // Whether limight has any valid targets (0 or 1)
     NetworkTableEntry ts; // Skew or rotation (-90 degrees to 0 degrees)
     NetworkTableEntry tl; // The pipeline’s latency contribution (ms) Add at least 11ms for image capture latency.
+    NetworkTableEntry ta;
     NetworkTableEntry tvert; // Vertical sidelength of the rough bounding box (0 - 320 pixels)
     NetworkTableEntry camtran; // Results of a 3D position solution, 6 numbers: Translation (x,y,y) Rotation(pitch,yaw,roll)
     NetworkTableEntry lightState;
@@ -42,6 +43,7 @@ public class LimelightSubsystem extends Subsystem {
         tv = table.getEntry("tv");
         ts = table.getEntry("ts");
         tl = table.getEntry("tl");
+        ta = table.getEntry("ta");
         pipeline = table.getEntry("pipeline");
         lightState = table.getEntry("ledMode");
         tvert = table.getEntry("tvert");
@@ -75,7 +77,7 @@ public class LimelightSubsystem extends Subsystem {
             SmartDashboard.putNumber("tx", xAngle);
             SmartDashboard.putNumber("Distance", calcXDist());
             SmartDashboard.putNumber("ty", yAngle);
-            SmartDashboard.putNumber("OIoasidghausdhg", 2);
+            SmartDashboard.putNumber("ta", ta.getDouble(0.0));
             
         }
         SmartDashboard.putBoolean("Has Target", hasTarget());
@@ -91,7 +93,6 @@ public class LimelightSubsystem extends Subsystem {
     public void rightPipeline(){
         pipeline.setValue(2);
     }
-
     public void leftPipeline(){
         pipeline.setValue(1);
     }
@@ -133,6 +134,10 @@ public class LimelightSubsystem extends Subsystem {
 
     public double getTV() {
         return tv.getDouble(0.0);
+    }
+
+    public double getTA() {
+        return ta.getDouble(0.0);
     }
 
     public void updateTVert(double current){
