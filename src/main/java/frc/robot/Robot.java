@@ -9,10 +9,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
 
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.cscore.MjpegServer;
-import edu.wpi.first.cameraserver.CameraServer;
-
 //import io.github.oblarg.oblog;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -32,6 +28,7 @@ import edu.wpi.first.wpilibj.smartdashboard.*;
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
+
 public class Robot extends TimedRobot {
   public static final DriveSubsystem drive = new DriveSubsystem();
   public static final BallIntakeSubsystem intake = new BallIntakeSubsystem();
@@ -45,30 +42,27 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     //Logger.configureLoggingAndConfig(this, false);
-    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
-    camera.setResolution(320, 240);
-    camera.setFPS(20);
   }
 
   public void periodic() {
     Scheduler.getInstance().run();
-    if (controller.getRawButton(14)) {
-      if (limelight.lightState() == 1) {
+    if (controller.getRawButtonPressed(14)) {
+      if (limelight.getLightState() == 1) {
         limelight.turnOnLight();
-      } else if (limelight.lightState() == 3) {
+      }
+      if (limelight.getLightState() == 3) {
         limelight.turnOffLight();
       }
     }
-  
   }
 
   @Override
   public void autonomousInit() {
-    //drive.autonomous();
   }
 
   @Override
   public void autonomousPeriodic() {
+    drive.autonomous();
   }
 
   @Override

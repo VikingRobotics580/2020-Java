@@ -90,9 +90,9 @@ public class DriveSubsystem extends Subsystem {
 
         // Constantly update the forw and turn variables with joystick data:
 
-        double forw = -1 *controller.getRawAxis(1); /* pos = forward */
-        double turn = +1 *controller.getRawAxis(2); /* pos = right */
-        boolean btn1 =controller.getRawButton(1); /* if button is down, print joystick values */
+        double forw = -1 * controller.getRawAxis(1); /* pos = forward */
+        double turn = +1 * controller.getRawAxis(2); /* pos = right */
+        boolean btn1 = controller.getRawButton(1); /* if button is down, print joystick values */
 
         // Margin of error for joystick sensitivity = 10%
         if (Math.abs(forw) < 0.10) {
@@ -103,7 +103,7 @@ public class DriveSubsystem extends Subsystem {
         }
 
         // DRIVE THE ROBOT:
-        _diffDrive.arcadeDrive(forw/1.5, turn);
+        _diffDrive.arcadeDrive(forw, turn*1.5);
 
         // Data printed to make sure joystick forward is positive and joystick turn is positive for right
         work += " JF:" + forw + " JT:" + turn;
@@ -134,46 +134,47 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void autonomous(){
-
-        if (firstAuto) {
-            _diffDrive.arcadeDrive(0.1, 0);
-            Timer.delay(3);
-            goto90();
-            _diffDrive.arcadeDrive(0.1, 0);
-            Timer.delay(3);
-            goto180();
-        }
-        firstAuto = false;
-
-        update_limelight_tracking();
-
-        _diffDrive.arcadeDrive(5, 0); //Drive forward at speed 5 and 0 rotation
-        Timer.delay(2.0); //Continue for 2 seconds
-        _diffDrive.arcadeDrive(0, 0); //Stop driving
-
-        if (Robot.limelight.getTV() != 1) { //Check to see if target is detected
-            autonomousSeeking();
-        }
-        if (autonomous) {
-            if (m_LimelightHasValidTarget) {
-                _diffDrive.arcadeDrive(m_LimelightDriveCommand, m_LimelightSteerCommand);
-            } else {
-                _diffDrive.arcadeDrive(0.0, 0.0);
+        if (update_ultrasonic() > 15 && autonomous) {
+            if (gyro.getAngle() > 2) {
+                _diffDrive.arcadeDrive(0, 0.1);
+            } else if (gyro.getAngle() < -2) {
+                _diffDrive.arcadeDrive(0, -0.1);
             }
-        }
-           
-        if (Robot.limelight.tx() < 1 && Robot.limelight.tx() > -1) {
-            Robot.shooter.shootBalls();
+            Robot.limelight.turnOffLight();
+            _diffDrive.arcadeDrive(1, 0);
+        } else {                  
+            Robot.limelight.turnOnLight();
+            update_limelight_tracking();
+
+            _diffDrive.arcadeDrive(5, 0); //Drive forward at speed 5 and 0 rotation
+            Timer.delay(2.0); //Continue for 2 seconds
+            _diffDrive.arcadeDrive(0, 0); //Stop driving
+    
+            if (Robot.limelight.getTV() != 1) { //Check to see if target is detected
+                autonomousSeeking();
+            }
+            if (autonomous) {
+                if (m_LimelightHasValidTarget) {
+                    _diffDrive.arcadeDrive(m_LimelightDriveCommand, m_LimelightSteerCommand);
+                } else {
+                    _diffDrive.arcadeDrive(0.0, 0.0);
+                }
+            }
+               
+            if (Robot.limelight.tx() < 1 && Robot.limelight.tx() > -1) {
+                Robot.shooter.shootBalls();
+            }
         }
     }
 
-    public void update_ultrasonic() {
+    public double update_ultrasonic() {
         double currentDistance = m_ultrasonic.getValue() * kValueToInches;
         SmartDashboard.putNumber("Ultrasonic", currentDistance);
         //convert distance error to a motor speed
         double currentSpeed = (kHoldDistance - currentDistance) * kP;
         SmartDashboard.putNumber("Current Speed", currentSpeed);
         //_diffDrive.arcadeDrive(currentSpeed, 0);
+        return currentDistance;
     }
 
     public void update_limelight_tracking() {
@@ -201,7 +202,6 @@ public class DriveSubsystem extends Subsystem {
         }
 
         m_LimelightDriveCommand = drive_cmd;
-
     }
 
     public void autonomousSeeking() { //Attempts to find target

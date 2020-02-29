@@ -10,6 +10,8 @@ import edu.wpi.first.networktables.*;
 
 import frc.robot.commands.LimelightCommand;
 
+import frc.robot.Robot;
+
 public class LimelightSubsystem extends Subsystem {
     
     final double vertIterations = 0;
@@ -49,6 +51,28 @@ public class LimelightSubsystem extends Subsystem {
         tvert = table.getEntry("tvert");
     }
 
+    public double getLightState() {
+        return lightState.getDouble(0.0);
+    }
+
+    public void turnOnLight() {
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setDouble(3);
+    }
+
+    public void turnOffLight() {
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setDouble(1);
+    }
+
+    public void isItGood() {
+        boolean good = false;
+        if ((getTV() == 1) && (tx.getDouble(0.0) > -1 && tx.getDouble(0.0) < 1) && (Robot.drive.update_ultrasonic() > 10 && Robot.drive.update_ultrasonic() < 12)) {
+            good = true;
+        } else {
+            good = false;
+        }
+        SmartDashboard.putBoolean("Good To Shoot?", good);
+    }
+
     public double getSign(double number){
         if( number > 0 ) {
             return 1; 
@@ -73,14 +97,17 @@ public class LimelightSubsystem extends Subsystem {
             yAngle = ty.getDouble(0.0);
             xAngle = tx.getDouble(0.0);
             currentTvert = tvert.getDouble(0.0);    
-            if(currentTvert>0){updateTVert(currentTvert);}
+            if(currentTvert>0){
+                updateTVert(currentTvert);
+            }
             SmartDashboard.putNumber("tx", xAngle);
-            SmartDashboard.putNumber("Distance", calcXDist());
+            SmartDashboard.putNumber("Limelight Distance", calcXDist());
             SmartDashboard.putNumber("ty", yAngle);
             SmartDashboard.putNumber("ta", ta.getDouble(0.0));
             
         }
         SmartDashboard.putBoolean("Has Target", hasTarget());
+        isItGood();
     }
 
     /**
@@ -145,19 +172,6 @@ public class LimelightSubsystem extends Subsystem {
         if(averageTVert.size()>vertIterations){
             averageTVert.remove(0);
         }
-    }
-
-
-    public void turnOffLight() {
-        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
-    }
-    
-    public void turnOnLight() {
-        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
-    }
-
-    public double lightState() {
-        return lightState.getDouble(0);
     }
 
     public double tvertAverage(){

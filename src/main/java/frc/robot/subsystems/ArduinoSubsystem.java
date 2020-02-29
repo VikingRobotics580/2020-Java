@@ -34,15 +34,13 @@ public class ArduinoSubsystem extends Subsystem {
 
 		if (getAlliance() == Alliance.Red) {
 			LEDColor = "1";
-		}
-		if (getAlliance() == Alliance.Blue) {
+		} else if (getAlliance() == Alliance.Blue) {
 			LEDColor = "2";
-		}
-		if (getAlliance() == Alliance.Invalid) {
+		} else if (getAlliance() == Alliance.Invalid) {
+			LEDColor = "4";
+		} else {
 			LEDColor = "4";
 		}
-
-		LEDColor = "1";
 
 		char[] CharArray = LEDColor.toCharArray();//creates a char array from the input string
 		byte[] WriteData = new byte[CharArray.length];//creates a byte array from the char array

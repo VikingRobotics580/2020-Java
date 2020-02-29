@@ -3,6 +3,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
+import static frc.robot.RobotMap.*;
+import static frc.robot.OI.*;
+
 public class DriveCommand extends Command {
 
 	public DriveCommand() {
@@ -15,7 +18,11 @@ public class DriveCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.drive.Driver();
+		//if (controller.getRawButtonPressed(3)) {
+		//	Robot.drive.autonomous();
+		//} else {
+			Robot.drive.Driver();
+		//}
 	}
 
 	@Override

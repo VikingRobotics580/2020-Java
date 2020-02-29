@@ -36,8 +36,8 @@ public class BallIntakeSubsystem extends Subsystem {
 
         if(controller.getRawButton(3)){
 
-                ballIntake_0.set(+1); //Set speed when cross is toggled and is inactive
-                ballIntake_1.set(-1); //Set speed when cross is toggled and is inactive
+                ballIntake_0.set(-1); //Set speed when cross is toggled and is inactive
+                ballIntake_1.set(+1); //Set speed when cross is toggled and is inactive
         }
         else { //Toggles off with cross when active
                 ballIntake_0.set(0);
