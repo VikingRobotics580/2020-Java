@@ -70,7 +70,7 @@ public class DriveSubsystem extends Subsystem {
         _lFront = new WPI_TalonSRX(3);
         _lBack = new WPI_TalonSRX(4);
 
-        _diffDrive = new DifferentialDrive(_lFront, _rFront);
+        _diffDrive = new DifferentialDrive(_rFront, _lFront);
         _lFaults = new Faults();
         _rFaults = new Faults();
 
@@ -83,15 +83,15 @@ public class DriveSubsystem extends Subsystem {
     // This is the driver method, that is run constantly in the DriveCommand. This is what takes raw data from the joysticks and pushes power to the motors.
     public void Driver() {
 
-        SmartDashboard.putNumber("Joystick X value",controller.getX());
-        SmartDashboard.putNumber("Joystick Y value",controller.getY());
+        SmartDashboard.putNumber("Joystick X value",controller.getRawAxis(1));
+        SmartDashboard.putNumber("Joystick Y value",controller.getRawAxis(2));
 
         String work = "";
 
         // Constantly update the forw and turn variables with joystick data:
 
         double forw = 1 * controller.getRawAxis(1); /* pos = forward */
-        double turn = -1 * controller.getRawAxis(2); /* pos = right */
+        double turn = 1 * controller.getRawAxis(2); /* pos = right */
         //boolean btn1 = controller.getRawButton(1); /* if button is down, print joystick values */
 
         // Margin of error for joystick sensitivity = 10%
@@ -103,7 +103,7 @@ public class DriveSubsystem extends Subsystem {
         }
 
         // DRIVE THE ROBOT:
-        _diffDrive.arcadeDrive(forw, turn);
+        _diffDrive.arcadeDrive(forw, turn*2);
 
         // Data printed to make sure joystick forward is positive and joystick turn is positive for right
         //work += " JF:" + forw + " JT:" + turn;
