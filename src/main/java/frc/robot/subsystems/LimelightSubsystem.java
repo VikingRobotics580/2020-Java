@@ -147,6 +147,19 @@ public class LimelightSubsystem extends Subsystem {
         }
     }
 
+
+    public void turnOffLight() {
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+    }
+    
+    public void turnOnLight() {
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+    }
+
+    public double lightState() {
+        return lightState.getDouble(0);
+    }
+
     public double tvertAverage(){
         double average = 0;
         if(averageTVert.size()>0){

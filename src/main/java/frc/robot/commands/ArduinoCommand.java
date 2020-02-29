@@ -18,7 +18,7 @@ public class ArduinoCommand extends Command {
 
 	@Override
 	protected void execute() {
-		//Robot.LED.write();
+		Robot.LED.write();
     }
 
 	@Override

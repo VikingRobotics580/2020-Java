@@ -35,13 +35,13 @@ public class BallShooterSubsystem extends Subsystem {
 
         if(controller.getRawButton(7)){
 
-            ballShooter0.set(-0.7); //Moves when button is pushed
-            ballShooter1.set(-0.7);
+            ballShooter0.set(1); //Moves when button is pushed
+            ballShooter1.set(1);
 
         } else if (controller.getRawButton(8)){
 
-            ballShooter0.set(-0.1); //Moves slower when button is pushed
-            ballShooter1.set(-0.1);
+            ballShooter0.set(0.3); //Moves slower when button is pushed
+            ballShooter1.set(0.3);
 
         } else {
 

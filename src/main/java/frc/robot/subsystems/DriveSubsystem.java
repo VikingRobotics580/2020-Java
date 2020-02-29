@@ -83,16 +83,16 @@ public class DriveSubsystem extends Subsystem {
     // This is the driver method, that is run constantly in the DriveCommand. This is what takes raw data from the joysticks and pushes power to the motors.
     public void Driver() {
 
-        SmartDashboard.putNumber("Joystick X value",leftJoystick.getX());
-        SmartDashboard.putNumber("Joystick Y value",leftJoystick.getY());
+        SmartDashboard.putNumber("Joystick X value",controller.getX());
+        SmartDashboard.putNumber("Joystick Y value",controller.getY());
 
         String work = "";
 
         // Constantly update the forw and turn variables with joystick data:
 
-        double forw = -1 *leftJoystick.getRawAxis(1); /* pos = forward */
-        double turn = +1 *leftJoystick.getRawAxis(2); /* pos = right */
-        boolean btn1 =leftJoystick.getRawButton(1); /* if button is down, print joystick values */
+        double forw = -1 *controller.getRawAxis(1); /* pos = forward */
+        double turn = +1 *controller.getRawAxis(2); /* pos = right */
+        boolean btn1 =controller.getRawButton(1); /* if button is down, print joystick values */
 
         // Margin of error for joystick sensitivity = 10%
         if (Math.abs(forw) < 0.10) {
@@ -205,7 +205,7 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void autonomousSeeking() { //Attempts to find target
-        if (!leftJoystick.getRawButtonPressed(EMG_Stp)) { //Checks autonomous kill button
+        if (!controller.getRawButtonPressed(EMG_Stp)) { //Checks autonomous kill button
             _diffDrive.arcadeDrive(0.1, 0.1);
         }
     }
@@ -221,7 +221,7 @@ public class DriveSubsystem extends Subsystem {
 
     public void goto180() {
         if (gyro.isConnected()) {
-            while ((!(gyro.getAngle() > 179 && gyro.getAngle() < 181)) && !leftJoystick.getRawButtonPressed(2)) {
+            while ((!(gyro.getAngle() > 179 && gyro.getAngle() < 181)) && !controller.getRawButtonPressed(2)) {
                 _diffDrive.arcadeDrive(0, -0.1);
             }
         } else {
@@ -231,7 +231,7 @@ public class DriveSubsystem extends Subsystem {
 
     public void goto90() {
         if (gyro.isConnected()) {
-            while ((!(gyro.getAngle() > 89 && gyro.getAngle() < 91)) && !leftJoystick.getRawButtonPressed(2)) {
+            while ((!(gyro.getAngle() > 89 && gyro.getAngle() < 91)) && !controller.getRawButtonPressed(2)) {
                 _diffDrive.arcadeDrive(0, -0.1);
             }
         }

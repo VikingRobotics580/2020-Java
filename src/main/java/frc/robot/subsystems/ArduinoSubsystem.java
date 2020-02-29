@@ -42,6 +42,8 @@ public class ArduinoSubsystem extends Subsystem {
 			LEDColor = "4";
 		}
 
+		LEDColor = "1";
+
 		char[] CharArray = LEDColor.toCharArray();//creates a char array from the input string
 		byte[] WriteData = new byte[CharArray.length];//creates a byte array from the char array
 		for (int i = 0; i < CharArray.length; i++) {//writes each byte to the arduino
