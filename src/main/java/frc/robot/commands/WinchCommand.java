@@ -6,7 +6,7 @@ import frc.robot.Robot;
 public class WinchCommand extends Command {
 
 	public WinchCommand() {
-		requires(Robot.winch);
+		//requires(Robot.winch);
 	}
 
 	@Override
@@ -15,7 +15,7 @@ public class WinchCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.winch.rotateWinch();
+		//Robot.winch.rotateWinch();
 	}
 
 	@Override

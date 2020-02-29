@@ -34,10 +34,10 @@ public class BallIntakeSubsystem extends Subsystem {
 
     public void rotateIntake(){ //Runs intermitantly after start
 
-        if(controller.getRawButton(3)){
+        if(controller.getRawButton(BIT)){
 
-                ballIntake_0.set(-1); //Set speed when cross is toggled and is inactive
-                ballIntake_1.set(+1); //Set speed when cross is toggled and is inactive
+                ballIntake_0.set(+BIT_Spd); //Set speed when cross is toggled and is inactive
+                ballIntake_1.set(-BIT_Spd); //Set speed when cross is toggled and is inactive
         }
         else { //Toggles off with cross when active
                 ballIntake_0.set(0);

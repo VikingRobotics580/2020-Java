@@ -9,10 +9,16 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.MjpegServer;
+import edu.wpi.first.cameraserver.CameraServer;
+
 //import io.github.oblarg.oblog;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 //import com.ctre.phoenix.motorcontrol.ControlMode;
+
+
 
 import static frc.robot.OI.*;
 
@@ -30,18 +36,22 @@ import edu.wpi.first.wpilibj.smartdashboard.*;
  */
 
 public class Robot extends TimedRobot {
+  
   public static final DriveSubsystem drive = new DriveSubsystem();
   public static final BallIntakeSubsystem intake = new BallIntakeSubsystem();
   public static final BallShooterSubsystem shooter = new BallShooterSubsystem();
-  public static final WinchSubsystem winch = new WinchSubsystem();
+  //public static final WinchSubsystem winch = new WinchSubsystem();
   public static final ArduinoSubsystem LED = new ArduinoSubsystem();
-  public static final ServoSubsystem servo = new ServoSubsystem();
+  //public static final ServoSubsystem servo = new ServoSubsystem();
   public static final LimelightSubsystem limelight = new LimelightSubsystem();
   public static final TutorialSubsystem tutorial = new TutorialSubsystem();
 
   @Override
   public void robotInit() {
     //Logger.configureLoggingAndConfig(this, false);
+    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
+    camera.setResolution(320, 240);
+    camera.setFPS(20);
   }
 
   public void periodic() {
@@ -54,10 +64,12 @@ public class Robot extends TimedRobot {
         limelight.turnOffLight();
       }
     }
+    drive.update_ultrasonic();
   }
 
   @Override
   public void autonomousInit() {
+    drive.setAuto(true);
   }
 
   @Override
@@ -67,6 +79,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    drive.setAuto(false);
   }
 
   @Override

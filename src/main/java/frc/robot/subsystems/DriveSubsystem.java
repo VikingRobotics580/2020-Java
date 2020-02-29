@@ -90,23 +90,23 @@ public class DriveSubsystem extends Subsystem {
 
         // Constantly update the forw and turn variables with joystick data:
 
-        double forw = -1 * controller.getRawAxis(1); /* pos = forward */
-        double turn = +1 * controller.getRawAxis(2); /* pos = right */
-        boolean btn1 = controller.getRawButton(1); /* if button is down, print joystick values */
+        double forw = 1 * controller.getRawAxis(1); /* pos = forward */
+        double turn = -1 * controller.getRawAxis(2); /* pos = right */
+        //boolean btn1 = controller.getRawButton(1); /* if button is down, print joystick values */
 
         // Margin of error for joystick sensitivity = 10%
-        if (Math.abs(forw) < 0.10) {
+        if (Math.abs(forw) < 0.05) {
             forw = 0;
         }
-        if (Math.abs(turn) < 0.10) {
+        if (Math.abs(turn) < 0.05) {
             turn = 0;
         }
 
         // DRIVE THE ROBOT:
-        _diffDrive.arcadeDrive(forw, turn*1.5);
+        _diffDrive.arcadeDrive(forw, turn);
 
         // Data printed to make sure joystick forward is positive and joystick turn is positive for right
-        work += " JF:" + forw + " JT:" + turn;
+        //work += " JF:" + forw + " JT:" + turn;
 
         // Get sensor values:
         double leftVelUnitsPer100ms = _lFront.getSelectedSensorVelocity(0);
@@ -114,7 +114,7 @@ public class DriveSubsystem extends Subsystem {
         // double leftPos = _leftFront.GetSelectedSensorPosition(0);
         // double rghtPos = _rghtFront.GetSelectedSensorPosition(0);
 
-        work += " L:" + leftVelUnitsPer100ms + " R:" + rghtVelUnitsPer100ms;
+        //work += " L:" + leftVelUnitsPer100ms + " R:" + rghtVelUnitsPer100ms;
 
         // Recognize any faults in the sensor:
         _lFront.getFaults(_lFaults);
@@ -128,21 +128,25 @@ public class DriveSubsystem extends Subsystem {
         }
 
         // Print to drive station when button 1 is pressed:
-        if (btn1) {
-            System.out.println(work);
-        }
+        //if (btn1) {
+        //    System.out.println(work);
+        //}
+    }
+
+    public void setAuto(boolean t) {
+        autonomous = t;
     }
 
     public void autonomous(){
-        if (update_ultrasonic() > 15 && autonomous) {
+        if (update_ultrasonic() > 35 && autonomous) { //test ultrasonic alone
             if (gyro.getAngle() > 2) {
-                _diffDrive.arcadeDrive(0, 0.1);
+                _diffDrive.arcadeDrive(0, 0.1); //test gyro angles alone
             } else if (gyro.getAngle() < -2) {
                 _diffDrive.arcadeDrive(0, -0.1);
             }
             Robot.limelight.turnOffLight();
-            _diffDrive.arcadeDrive(1, 0);
-        } else {                  
+            _diffDrive.arcadeDrive(0.5, 0);
+        } else if (autonomous) {                  
             Robot.limelight.turnOnLight();
             update_limelight_tracking();
 
@@ -153,18 +157,17 @@ public class DriveSubsystem extends Subsystem {
             if (Robot.limelight.getTV() != 1) { //Check to see if target is detected
                 autonomousSeeking();
             }
-            if (autonomous) {
-                if (m_LimelightHasValidTarget) {
-                    _diffDrive.arcadeDrive(m_LimelightDriveCommand, m_LimelightSteerCommand);
-                } else {
-                    _diffDrive.arcadeDrive(0.0, 0.0);
-                }
+
+            if (m_LimelightHasValidTarget) {
+                _diffDrive.arcadeDrive(m_LimelightDriveCommand, m_LimelightSteerCommand);
+            } else {
+                _diffDrive.arcadeDrive(0.0, 0.0);
             }
-               
-            if (Robot.limelight.tx() < 1 && Robot.limelight.tx() > -1) {
-                Robot.shooter.shootBalls();
+            
+            //if (Robot.limelight.tx() < 1 && Robot.limelight.tx() > -1) {
+                //Robot.shooter.shootBalls();
             }
-        }
+        
     }
 
     public double update_ultrasonic() {
@@ -232,6 +235,14 @@ public class DriveSubsystem extends Subsystem {
     public void goto90() {
         if (gyro.isConnected()) {
             while ((!(gyro.getAngle() > 89 && gyro.getAngle() < 91)) && !controller.getRawButtonPressed(2)) {
+                _diffDrive.arcadeDrive(0, 0.1);
+            }
+        }
+    }
+    
+    public void goto270() {
+        if (gyro.isConnected()) {
+            while ((!(gyro.getAngle() > 269 && gyro.getAngle() < 271)) && !controller.getRawButtonPressed(2)) {
                 _diffDrive.arcadeDrive(0, -0.1);
             }
         }

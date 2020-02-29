@@ -18,11 +18,13 @@ public class DriveCommand extends Command {
 
 	@Override
 	protected void execute() {
-		//if (controller.getRawButtonPressed(3)) {
-		//	Robot.drive.autonomous();
-		//} else {
+		if (controller.getRawButtonPressed(3)) {
+			Robot.drive.setAuto(true);
+			Robot.drive.autonomous();
+			Robot.drive.setAuto(false);
+		} else {
 			Robot.drive.Driver();
-		//}
+		}
 	}
 
 	@Override
