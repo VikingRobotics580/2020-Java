@@ -56,11 +56,11 @@ public class LimelightSubsystem extends Subsystem {
     }
 
     public void turnOnLight() {
-        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setDouble(3);
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     }
 
     public void turnOffLight() {
-        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setDouble(1);
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
     }
 
     public void isItGood() {

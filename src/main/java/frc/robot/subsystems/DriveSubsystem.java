@@ -12,6 +12,7 @@ import static frc.robot.OI.*;
 import static frc.robot.RobotMap.*;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.LinearFilter;
 
 import com.ctre.phoenix.motorcontrol.Faults;
 import com.ctre.phoenix.motorcontrol.InvertType;
@@ -83,27 +84,27 @@ public class DriveSubsystem extends Subsystem {
     // This is the driver method, that is run constantly in the DriveCommand. This is what takes raw data from the joysticks and pushes power to the motors.
     public void Driver() {
 
-        SmartDashboard.putNumber("Joystick X value",controller.getRawAxis(1));
-        SmartDashboard.putNumber("Joystick Y value",controller.getRawAxis(2));
+        SmartDashboard.putNumber("Left Joystick",controller.getRawAxis(1));
+        SmartDashboard.putNumber("Right Joystick",controller.getRawAxis(2));
 
         String work = "";
 
         // Constantly update the forw and turn variables with joystick data:
 
-        double forw = 1 * controller.getRawAxis(1); /* pos = forward */
-        double turn = 1 * controller.getRawAxis(2); /* pos = right */
+        double left = 1 * controller.getRawAxis(1); /* pos = forward */
+        double right = 1 * controller.getRawAxis(2); /* pos = right */
         //boolean btn1 = controller.getRawButton(1); /* if button is down, print joystick values */
 
         // Margin of error for joystick sensitivity = 10%
-        if (Math.abs(forw) < 0.05) {
-            forw = 0;
+        if (Math.abs(left) < 0.05) {
+            right = 0;
         }
-        if (Math.abs(turn) < 0.05) {
-            turn = 0;
+        if (Math.abs(right) < 0.05) {
+            right = 0;
         }
 
         // DRIVE THE ROBOT:
-        _diffDrive.arcadeDrive(forw, turn*2);
+        _diffDrive.tankDrive(left, right);
 
         // Data printed to make sure joystick forward is positive and joystick turn is positive for right
         //work += " JF:" + forw + " JT:" + turn;
@@ -140,29 +141,28 @@ public class DriveSubsystem extends Subsystem {
     public void autonomous(){
         if (update_ultrasonic() > 35 && autonomous) { //test ultrasonic alone
             if (gyro.getAngle() > 2) {
-                _diffDrive.arcadeDrive(0, 0.1); //test gyro angles alone
+                _diffDrive.tankDrive(-0.3, 0.3); //test gyro angles alone
             } else if (gyro.getAngle() < -2) {
-                _diffDrive.arcadeDrive(0, -0.1);
+                _diffDrive.tankDrive(0.3, -0.3);
             }
             Robot.limelight.turnOffLight();
-            _diffDrive.arcadeDrive(0.5, 0);
+            _diffDrive.tankDrive(0.5, 0.5);
         } else if (autonomous) {                  
             Robot.limelight.turnOnLight();
             update_limelight_tracking();
-
-            _diffDrive.arcadeDrive(5, 0); //Drive forward at speed 5 and 0 rotation
+            _diffDrive.tankDrive(0.3, 0.3); //Drive forward at speed 5 and 0 rotation
             Timer.delay(2.0); //Continue for 2 seconds
-            _diffDrive.arcadeDrive(0, 0); //Stop driving
+            _diffDrive.tankDrive(0, 0); //Stop driving
     
             if (Robot.limelight.getTV() != 1) { //Check to see if target is detected
                 autonomousSeeking();
             }
 
-            if (m_LimelightHasValidTarget) {
-                _diffDrive.arcadeDrive(m_LimelightDriveCommand, m_LimelightSteerCommand);
-            } else {
-                _diffDrive.arcadeDrive(0.0, 0.0);
-            }
+            //if (m_LimelightHasValidTarget) {
+            //    _diffDrive.tankDrive(m_LimelightDriveCommand, m_LimelightSteerCommand);
+            //} else {
+            //    _diffDrive.tankDrive(0.0, 0.0);
+            //}
             
             //if (Robot.limelight.tx() < 1 && Robot.limelight.tx() > -1) {
                 //Robot.shooter.shootBalls();
@@ -254,6 +254,11 @@ public class DriveSubsystem extends Subsystem {
 
     // This initializes everything in the subsystem, sets everything to "default":
     public void initDefaultCommand() {
+
+        _rFront.setExpiration(0.1);
+        _rBack.setExpiration(0.1);
+        _lFront.setExpiration(0.1);
+        _lBack.setExpiration(0.1);
 
         // Set all the values to factory default
         _rFront.configFactoryDefault();
