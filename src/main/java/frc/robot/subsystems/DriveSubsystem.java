@@ -85,14 +85,14 @@ public class DriveSubsystem extends Subsystem {
     public void Driver() {
 
         SmartDashboard.putNumber("Left Joystick",controller.getRawAxis(1));
-        SmartDashboard.putNumber("Right Joystick",controller.getRawAxis(2));
+        SmartDashboard.putNumber("Right Joystick",controller.getRawAxis(5));
 
         String work = "";
 
         // Constantly update the forw and turn variables with joystick data:
 
-        double left = 1 * controller.getRawAxis(1); /* pos = forward */
-        double right = 1 * controller.getRawAxis(2); /* pos = right */
+        double left = -1 * controller.getRawAxis(1); /* pos = forward */
+        double right = -1 * controller.getRawAxis(5); /* pos = right */
         //boolean btn1 = controller.getRawButton(1); /* if button is down, print joystick values */
 
         // Margin of error for joystick sensitivity = 10%
