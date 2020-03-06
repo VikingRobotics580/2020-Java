@@ -139,7 +139,10 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void autonomous(){
-        if (update_ultrasonic() > 35 && autonomous) { //test ultrasonic alone
+
+        _diffDrive.tankDrive(3, 0);
+
+        /*if (update_ultrasonic() > 35 && autonomous) { //test ultrasonic alone
             if (gyro.getAngle() > 2) {
                 _diffDrive.tankDrive(-0.3, 0.3); //test gyro angles alone
             } else if (gyro.getAngle() < -2) {
@@ -166,7 +169,7 @@ public class DriveSubsystem extends Subsystem {
             
             //if (Robot.limelight.tx() < 1 && Robot.limelight.tx() > -1) {
                 //Robot.shooter.shootBalls();
-            }
+            }*/
         
     }
 
