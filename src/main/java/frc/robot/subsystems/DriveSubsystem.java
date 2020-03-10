@@ -141,6 +141,8 @@ public class DriveSubsystem extends Subsystem {
     public void autonomous(){
 
         _diffDrive.tankDrive(3, 0);
+        Timer.delay(3);
+        _diffDrive.tankDrive(0, 0);
 
         /*if (update_ultrasonic() > 35 && autonomous) { //test ultrasonic alone
             if (gyro.getAngle() > 2) {
