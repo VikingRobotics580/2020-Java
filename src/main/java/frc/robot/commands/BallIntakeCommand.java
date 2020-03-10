@@ -6,7 +6,7 @@ import frc.robot.Robot;
 public class BallIntakeCommand extends Command {
 
 	public BallIntakeCommand() {
-		requires(Robot.intake);
+		//requires(Robot.intake);
 	}
 
 	@Override
@@ -15,7 +15,7 @@ public class BallIntakeCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.intake.rotateIntake();
+		//Robot.intake.rotateIntake();
 	}
 
 	@Override

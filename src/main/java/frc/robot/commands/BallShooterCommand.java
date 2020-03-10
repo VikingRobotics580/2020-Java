@@ -6,7 +6,7 @@ import frc.robot.Robot;
 public class BallShooterCommand extends Command {
 
 	public BallShooterCommand() {
-		requires(Robot.shooter);
+		//requires(Robot.shooter);
 	}
 
 	@Override
@@ -15,7 +15,7 @@ public class BallShooterCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.shooter.shootBalls();
+		//Robot.shooter.shootBalls();
 	}
 
 	@Override

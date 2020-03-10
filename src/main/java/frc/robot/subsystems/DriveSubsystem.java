@@ -104,7 +104,7 @@ public class DriveSubsystem extends Subsystem {
         }
 
         // DRIVE THE ROBOT:
-        _diffDrive.tankDrive(left, right);
+        _diffDrive.tankDrive(left*0.8, right*0.8);
 
         // Data printed to make sure joystick forward is positive and joystick turn is positive for right
         //work += " JF:" + forw + " JT:" + turn;
@@ -139,7 +139,7 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void autonomous(){
-        if (update_ultrasonic() > 35 && autonomous) { //test ultrasonic alone
+        /*if (update_ultrasonic() > 35 && autonomous) { //test ultrasonic alone
             if (gyro.getAngle() > 2) {
                 _diffDrive.tankDrive(-0.3, 0.3); //test gyro angles alone
             } else if (gyro.getAngle() < -2) {
@@ -156,7 +156,7 @@ public class DriveSubsystem extends Subsystem {
     
             if (Robot.limelight.getTV() != 1) { //Check to see if target is detected
                 autonomousSeeking();
-            }
+            }*/
 
             //if (m_LimelightHasValidTarget) {
             //    _diffDrive.tankDrive(m_LimelightDriveCommand, m_LimelightSteerCommand);
@@ -171,7 +171,7 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public double update_ultrasonic() {
-        double currentDistance = m_ultrasonic.getValue() * kValueToInches;
+        double currentDistance = m_ultrasonic.getValue() * 0.125;
         SmartDashboard.putNumber("Ultrasonic", currentDistance);
         //convert distance error to a motor speed
         double currentSpeed = (kHoldDistance - currentDistance) * kP;
