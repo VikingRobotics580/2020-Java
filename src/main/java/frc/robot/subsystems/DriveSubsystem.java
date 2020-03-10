@@ -139,6 +139,14 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void autonomous(){
+<<<<<<< HEAD
+=======
+
+        _diffDrive.tankDrive(3, 0); //Begin driving forwards
+        Timer.delay(3); //Wait three seconds
+        _diffDrive.tankDrive(0, 0); //Stop driving
+
+>>>>>>> 045f293ea30c56996c4fe9c0931675c2e03eddf8
         /*if (update_ultrasonic() > 35 && autonomous) { //test ultrasonic alone
             if (gyro.getAngle() > 2) {
                 _diffDrive.tankDrive(-0.3, 0.3); //test gyro angles alone
@@ -166,7 +174,7 @@ public class DriveSubsystem extends Subsystem {
             
             //if (Robot.limelight.tx() < 1 && Robot.limelight.tx() > -1) {
                 //Robot.shooter.shootBalls();
-            }
+            }*/
         
     }
 
@@ -207,13 +215,13 @@ public class DriveSubsystem extends Subsystem {
         m_LimelightDriveCommand = drive_cmd;
     }
 
-    public void autonomousSeeking() { //Attempts to find target
+    public void autonomousSeeking() { //Attempts to find target by driving and rotating
         if (!controller.getRawButtonPressed(EMG_Stp)) { //Checks autonomous kill button
             _diffDrive.arcadeDrive(0.1, 0.1);
         }
     }
 
-    public void ranging() {
+    public void ranging() { //Attempts to rotate to find target
         if (Robot.limelight.calcXDist() > 125) {
             _diffDrive.arcadeDrive(0, -0.1);
         }
@@ -222,7 +230,7 @@ public class DriveSubsystem extends Subsystem {
         }
     }
 
-    public void goto180() {
+    public void goto180() { //Rotates to 180 degrees
         if (gyro.isConnected()) {
             while ((!(gyro.getAngle() > 179 && gyro.getAngle() < 181)) && !controller.getRawButtonPressed(2)) {
                 _diffDrive.arcadeDrive(0, -0.1);
@@ -232,7 +240,7 @@ public class DriveSubsystem extends Subsystem {
         }
     }
 
-    public void goto90() {
+    public void goto90() { //Rotates to 90 degrees
         if (gyro.isConnected()) {
             while ((!(gyro.getAngle() > 89 && gyro.getAngle() < 91)) && !controller.getRawButtonPressed(2)) {
                 _diffDrive.arcadeDrive(0, 0.1);
@@ -240,7 +248,7 @@ public class DriveSubsystem extends Subsystem {
         }
     }
     
-    public void goto270() {
+    public void goto270() { //Rotates to 270 degrees
         if (gyro.isConnected()) {
             while ((!(gyro.getAngle() > 269 && gyro.getAngle() < 271)) && !controller.getRawButtonPressed(2)) {
                 _diffDrive.arcadeDrive(0, -0.1);
@@ -248,7 +256,7 @@ public class DriveSubsystem extends Subsystem {
         }
     }
 
-    public void resetGyro() {
+    public void resetGyro() { //Sets gyro to 0 
         gyro.reset();
     }
 
